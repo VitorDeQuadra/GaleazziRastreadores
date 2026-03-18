@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rastreadores — Protegendo suas conquistas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Nunito+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="loading">
+
+  <!-- ════ LOADER ════ -->
+  <div id="page-loader">
+    <div class="loader-bg"></div>
+    <div class="loader-particles" aria-hidden="true">
+      <span></span><span></span><span></span>
+      <span></span><span></span><span></span>
+    </div>
+    <div class="loader-center">
+      <div class="loader-radar">
+        <div class="lr-ring lr1"></div>
+        <div class="lr-ring lr2"></div>
+        <div class="lr-ring lr3"></div>
+        <div class="lr-sweep"></div>
+      </div>
+      <div class="loader-logo">
+        <img src="assets/logos/rastreadores-branco.png" alt="Rastreadores"
+             onerror="this.outerHTML='<span class=loader-logo-text>RASTREADORES</span>'">
+      </div>
+      <p class="loader-tagline">Protegendo suas conquistas</p>
+      <div class="loader-bar-wrap">
+        <div class="loader-bar" id="loader-bar"></div>
+      </div>
+      <span class="loader-status" id="loader-status">Iniciando sistema…</span>
+    </div>
+    <div class="loader-corner">
+      <span class="lc-dot"></span> Sistema Ativo
+    </div>
+  </div>
+  <!-- ════ /LOADER ════ -->
+
+  <!-- CURSOR -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursor-ring"></div>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a class="nav-logo" href="#">
+      <img src="assets/logos/rastreadores-azul.png" alt="Rastreadores"
+           onerror="this.outerHTML='<span class=nav-logo-text>RASTREADORES</span>'">
+    </a>
+    <ul class="nav-links">
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#como-funciona">Como Funciona</a></li>
+      <li><a href="#numeros">Números</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="./contato.html">Contato</a></li>
+    </ul>
+    <a href="#cta" class="btn-nav">Orçamento Grátis</a>
+    <button class="nav-hamburger" id="hamburger" aria-label="menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- NAV DRAWER MOBILE -->
+  <div class="nav-overlay" id="nav-overlay"></div>
+  <nav class="nav-drawer" id="nav-drawer" aria-label="Menu mobile">
+    <div class="nav-drawer-header">
+      <a class="nav-drawer-logo" href="#">
+        <img src="assets/logos/rastreadores-azul.png" alt="Rastreadores"
+             onerror="this.outerHTML='<span class=nav-drawer-logo-text>RASTREADORES</span>'">
+      </a>
+      <button class="nav-drawer-close" id="nav-drawer-close" aria-label="Fechar menu">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <ul class="nav-drawer-links">
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#como-funciona">Como Funciona</a></li>
+      <li><a href="#numeros">Números</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="./contato.html">Contato</a></li>
+    </ul>
+    <div class="nav-drawer-footer">
+      <a href="#cta" class="btn-nav">Orçamento Grátis</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-noise"></div>
+    <div class="hero-glow-left"></div>
+    <div class="hero-glow-right"></div>
+
+    <!-- radar rings -->
+    <div class="radar" aria-hidden="true">
+      <div class="radar-ring r1"></div>
+      <div class="radar-ring r2"></div>
+      <div class="radar-ring r3"></div>
+      <div class="radar-sweep"></div>
+    </div>
+
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Monitoramento em tempo real · 24/7
+        </div>
+
+        <h1 class="hero-title anim-fade-up">
+          Protegendo<br>
+          suas <em>conquistas</em><br>
+        </h1>
+
+        <p class="hero-sub anim-fade-up" style="--d:.18s">
+          Rastreamento veicular via satélite com monitoramento em tempo real e bloqueio remoto.
+          Mais segurança e controle para veículos e frotas em todo o Brasil.
+        </p>
+
+        <div class="hero-actions anim-fade-up" style="--d:.32s">
+          <a href="#servicos" class="btn-primary">
+            Ver Serviços
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#cta" class="btn-outline">Orçamento Grátis</a>
+        </div>
+      </div>
+
+      <div class="hero-right" id="three-wrap">
+        <div id="three-container"></div>
+        <!-- halo glow behind satellite -->
+        <div class="sat-halo"></div>
+      </div>
+    </div>
+
+    <!-- floating stat bar -->
+    <div class="hero-stats anim-fade-up" style="--d:.5s">
+      <div class="hstat">
+        <strong>10.000<sup>+</sup></strong>
+        <span>Veículos protegidos</span>
+      </div>
+      <div class="hstat-divider"></div>
+      <div class="hstat">
+        <strong>99,9<sup>%</sup></strong>
+        <span>Cobertura nacional</span>
+      </div>
+      <div class="hstat-divider"></div>
+      <div class="hstat">
+        <strong>&lt;48h</strong>
+        <span>Recuperação média</span>
+      </div>
+      <div class="hstat-divider"></div>
+      <div class="hstat">
+        <strong>ISO 9001</strong>
+        <span>Certificação</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVIÇOS -->
+  <section id="servicos" class="section-light">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-tag">Nossos Serviços</div>
+        <h2>Proteção <span>inteligente</span><br>em cada detalhe</h2>
+      </div>
+      <div class="services-grid">
+
+        <div class="scard reveal">
+          <div class="scard-num">01</div>
+          <div class="scard-icon">📡</div>
+          <h4>Rastreamento GPS</h4>
+          <p>Monitoramento em tempo real via satélite com precisão de 3 metros. App iOS e Android com histórico completo de rotas e alertas instantâneos.</p>
+          <div class="scard-line"></div>
+        </div>
+
+        <div class="scard reveal" style="--rd:.1s">
+          <div class="scard-num">02</div>
+          <div class="scard-icon">🔧</div>
+          <h4>Instalação Certificada</h4>
+          <p>Técnico especializado instala de forma discreta em até 1 hora. Sem marcas visíveis, sem interferência na garantia do fabricante.</p>
+          <div class="scard-line"></div>
+        </div>
+
+        <div class="scard reveal" style="--rd:.2s">
+          <div class="scard-num">03</div>
+          <div class="scard-icon">📞</div>
+          <h4>Central 24/7</h4>
+          <p>Bloqueio remoto imediato, localização em tempo real e acionamento das autoridades. Nossa central nunca dorme.</p>
+          <div class="scard-line"></div>
+        </div>
+
+        <div class="scard reveal" style="--rd:.3s">
+          <div class="scard-num">04</div>
+          <div class="scard-icon">🚛</div>
+          <h4>Gestão de Frotas</h4>
+          <p>Painel corporativo completo: controle de motoristas, consumo de combustível, manutenções preventivas e cerca virtual personalizada.</p>
+          <div class="scard-line"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section id="como-funciona" class="section-dark">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-tag">Como Funciona</div>
+        <h2>Simples, rápido<br>e <span>eficiente</span></h2>
+      </div>
+
+      <div class="steps-layout">
+        <!-- mockup -->
+        <div class="dashboard-mockup reveal">
+          <div class="dm-header">
+            <div class="dm-dots">
+              <span style="background:#FF5F57"></span>
+              <span style="background:#FFBD2E"></span>
+              <span style="background:#28C840"></span>
+            </div>
+            <span class="dm-title">Painel de Controle — Rastreadores</span>
+          </div>
+          <div class="dm-body">
+            <div class="dm-map">
+              <div class="dm-grid-h"></div>
+              <div class="dm-grid-v"></div>
+              <div class="dm-pin pin-active">
+                <div class="pin-pulse"></div>
+              </div>
+              <div class="dm-pin pin-secondary" style="left:62%;top:35%"></div>
+              <div class="dm-route"></div>
+              <div class="dm-live-badge">● AO VIVO</div>
+            </div>
+            <div class="dm-stats">
+              <div class="dm-stat">
+                <span class="ds-val">84 km/h</span>
+                <span class="ds-lbl">Velocidade</span>
+              </div>
+              <div class="dm-stat">
+                <span class="ds-val" style="color:var(--gold)">São Paulo</span>
+                <span class="ds-lbl">Localização</span>
+              </div>
+              <div class="dm-stat">
+                <span class="ds-val" style="color:var(--signal)">Online</span>
+                <span class="ds-lbl">Status</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- steps -->
+        <ol class="steps-list">
+          <li class="step reveal">
+            <div class="step-num">01</div>
+            <div class="step-body">
+              <h4>Contratação e Agendamento</h4>
+              <p>Escolha seu plano online ou por telefone. Agendamos no melhor horário para você, sem burocracia.</p>
+            </div>
+          </li>
+          <li class="step reveal" style="--rd:.12s">
+            <div class="step-num">02</div>
+            <div class="step-body">
+              <h4>Instalação em 1 Hora</h4>
+              <p>Técnico certificado instala o módulo GPS de forma discreta, preservando a garantia do veículo.</p>
+            </div>
+          </li>
+          <li class="step reveal" style="--rd:.24s">
+            <div class="step-num">03</div>
+            <div class="step-body">
+              <h4>Monitoramento Ativo</h4>
+              <p>Acompanhe seu veículo 24h pelo app. Nossa central monitora alertas e age imediatamente.</p>
+            </div>
+          </li>
+          <li class="step reveal" style="--rd:.36s">
+            <div class="step-num">04</div>
+            <div class="step-body">
+              <h4>Recuperação Garantida</h4>
+              <p>Em caso de roubo, bloqueamos remotamente e coordenamos a recuperação com as autoridades.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- NÚMEROS -->
+  <section id="numeros" class="section-accent">
+    <div class="container">
+      <div class="section-head centered">
+        <div class="section-tag tag-ligth">Em Números</div>
+        <h2>Resultados que<br><span>falam por si</span></h2>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-box reveal">
+          <div class="stat-val"><span class="count" data-target="10000">0</span><sup>+</sup></div>
+          <div class="stat-rule"></div>
+          <div class="stat-lbl">Veículos protegidos</div>
+        </div>
+        <div class="stat-box reveal" style="--rd:.1s">
+          <div class="stat-val"><span class="count" data-target="94">0</span><sup>%</sup></div>
+          <div class="stat-rule"></div>
+          <div class="stat-lbl">Taxa de recuperação</div>
+        </div>
+        <div class="stat-box reveal" style="--rd:.2s">
+          <div class="stat-val"><span class="count" data-target="5">0</span><sup>K</sup></div>
+          <div class="stat-rule"></div>
+          <div class="stat-lbl">Clientes satisfeitos</div>
+        </div>
+        <div class="stat-box reveal" style="--rd:.3s">
+          <div class="stat-val"><span class="count" data-target="24">0</span><sup>h</sup></div>
+          <div class="stat-rule"></div>
+          <div class="stat-lbl">Suporte disponível</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECNOLOGIA -->
+  <section id="tecnologia" class="section-light">
+    <div class="container">
+      <div class="features-layout">
+        <div class="features-text">
+          <div class="section-tag">Tecnologia</div>
+          <h2>Infraestrutura<br>de <span>nível militar</span></h2>
+          <div class="feat-list">
+            <div class="feat reveal">
+              <div class="feat-ico">🛰️</div>
+              <div>
+                <h5>Rastreamento via Satélite</h5>
+                <p>Localização do veículo em tempo real com ampla cobertura em todo o Brasil.</p>
+              </div>
+            </div>
+
+            <div class="feat reveal" style="--rd:.1s">
+              <div class="feat-ico">📍</div>
+              <div>
+                <h5>Monitoramento em Tempo Real</h5>
+                <p>Acompanhe seu veículo a qualquer momento pelo celular ou computador.</p>
+              </div>
+            </div>
+
+            <div class="feat reveal" style="--rd:.2s">
+              <div class="feat-ico">🔐</div>
+              <div>
+                <h5>Dados Seguros</h5>
+                <p>Informações protegidas com tecnologia segura para garantir sua privacidade.</p>
+              </div>
+            </div>
+
+            <div class="feat reveal" style="--rd:.3s">
+              <div class="feat-ico">⚡</div>
+              <div>
+                <h5>Bloqueio Remoto</h5>
+                <p>Mais segurança com a possibilidade de bloqueio do veículo em situações de risco.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="orbit-visual reveal">
+          <div class="orbit-outer">
+            <div class="orbit-ring-anim"></div>
+            <div class="orbit-node" style="--a:0deg">🛰️</div>
+            <div class="orbit-node" style="--a:90deg">📱</div>
+            <div class="orbit-node" style="--a:180deg">🔐</div>
+            <div class="orbit-node" style="--a:270deg">🚗</div>
+            <div class="orbit-core">📡</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section id="sobre" class="section-dark">
+    <div class="container">
+      <div class="sobre-layout">
+
+        <div class="sobre-card reveal">
+          <div class="sc-tag">
+            <span class="sc-dot"></span> Sistema Ativo
+          </div>
+          <div class="sc-logo-area">
+            <img src="assets/logos/rastreadores-branco.png" alt="Rastreadores"
+                 onerror="this.outerHTML='<div class=sc-logo-fallback>RASTREADORES</div>'">
+          </div>
+          <div class="sc-metrics">
+            <div class="sc-metric">
+              <strong>10+</strong><span>Anos de mercado</span>
+            </div>
+            <div class="sc-metric">
+              <strong>38</strong><span>Estados cobertos</span>
+            </div>
+            <div class="sc-metric">
+              <strong>200+</strong><span>Técnicos cert.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sobre-text">
+          <div class="section-tag">Sobre Nós</div>
+          <h2>Tecnologia que<br><span>protege o que</span><br>importa</h2>
+          <p>Fundada por especialistas em segurança veicular, a Rastreadores nasceu com propósito claro: usar tecnologia de ponta para proteger o que as pessoas conquistaram com esforço.</p>
+          <p>Hoje somos referência nacional. Nossa equipe certificada ISO 9001 opera com os mais altos padrões de qualidade, atendendo desde proprietários individuais até grandes frotas corporativas.</p>
+          <ul class="check-list">
+            <li><span class="chk">✓</span> Cobertura nacional de 99,9%</li>
+            <li><span class="chk">✓</span> Recuperação média em menos de 48 horas</li>
+            <li><span class="chk">✓</span> App multiplataforma iOS e Android</li>
+            <li><span class="chk">✓</span> Central de monitoramento própria com redundância</li>
+            <li><span class="chk">✓</span> Integração direta com Polícia em todos os estados</li>
+          </ul>
+          <a href="#cta" class="btn-primary">
+            Conheça os planos
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta" class="section-cta">
+    <div class="cta-glow"></div>
+    <div class="container">
+      <div class="cta-inner">
+        <div class="section-tag tag-dark centered">Comece Agora</div>
+        <h2 class="reveal">Seu veículo merece<br>proteção <span>real</span></h2>
+        <p class="reveal" style="--rd:.1s">Solicite uma demonstração gratuita. Sem compromisso, sem burocracia.<br>Nossa equipe entra em contato em até 2 horas.</p>
+        <div class="cta-actions reveal" style="--rd:.2s">
+          <a href="contato.html" class="btn-primary btn-lg">
+            Falar com Especialista
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="tel:08000000000" class="btn-outline btn-lg">📞 0800 000 0000</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="assets/logos/rastreadores-branco.png" alt="Rastreadores"
+               onerror="this.outerHTML='<span class=footer-logo-text>RASTREADORES</span>'">
+          <p>Tecnologia de rastreamento veicular para proteger suas conquistas. Monitoramento 24/7 em todo o Brasil.</p>
+        </div>
+        <div class="footer-col">
+          <h6>Serviços</h6>
+          <ul>
+            <li><a href="#">Rastreamento GPS</a></li>
+            <li><a href="#">Gestão de Frotas</a></li>
+            <li><a href="#">Bloqueio Remoto</a></li>
+            <li><a href="#">Instalação</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h6>Empresa</h6>
+          <ul>
+            <li><a href="#">Sobre Nós</a></li>
+            <li><a href="#">Certificações</a></li>
+            <li><a href="#">Parceiros</a></li>
+            <li><a href="contato.html">Contato</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h6>Suporte</h6>
+          <ul>
+            <li><a href="#">Central 24/7</a></li>
+            <li><a href="#">App Mobile</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Privacidade</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 Rastreadores. Todos os direitos reservados.</p>
+        <div class="footer-status">
+          <span class="status-dot"></span>
+          Todos os sistemas operacionais
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts: Three.js via importmap + ES module -->
+  <script defer src="https://unpkg.com/es-module-shims@1.8.0/dist/es-module-shims.js"></script>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+    }
+  }
+  </script>
+  <script defer src="script.js"></script>
+  <script type="module" src="./assets/js/satellite.js"></script>
+
+  <script>
+(function () {
+  var loader   = document.getElementById('page-loader');
+  var bar      = document.getElementById('loader-bar');
+  var statusEl = document.getElementById('loader-status');
+  var done     = false;
+  var iv;
+
+  function hide() {
+    if (done) return;
+    done = true;
+    clearInterval(iv);
+    if (bar) bar.style.transform = 'scaleX(1)';
+    if (statusEl) statusEl.textContent = 'Sistema pronto!';
+    setTimeout(function () {
+      loader.classList.add('loader-out');
+      document.body.classList.remove('loading');
+      setTimeout(function () { if (loader && loader.parentNode) loader.remove(); }, 800);
+    }, 300);
+  }
+
+  window.addEventListener('satellite:ready', hide);
+  window.addEventListener('load', hide);
+  setTimeout(hide, 4000);
+
+  var msgs = ['Iniciando sistema…','Conectando satélites…','Carregando módulos…','Quase lá…'];
+  var p = 0, mi = 0;
+  iv = setInterval(function () {
+    p = Math.min(p + Math.random() * 10, 90);
+    if (bar) bar.style.transform = 'scaleX(' + p / 100 + ')';
+    if (statusEl && mi < msgs.length - 1 && p > (mi + 1) * 22) statusEl.textContent = msgs[++mi];
+  }, 200);
+})();
+  </script>
+</body>
