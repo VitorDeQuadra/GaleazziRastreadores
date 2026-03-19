@@ -1,536 +1,787 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rastreadores — Protegendo suas conquistas</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Nunito+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body class="loading">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Galeazzi Rastreadores | Pato Branco – PR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --az:#0d1f3c;
+  --az2:#162d56;
+  --az3:#1e4080;
+  --or:#e8920a;
+  --or2:#f5a623;
+  --br:#ffffff;
+  --esc:#0a0f1e;
+  --esc2:#111827;
+  --gr:#8fa0b8;
+  --R:10px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',sans-serif;background:var(--esc);color:var(--br);overflow-x:hidden}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--esc)}
+::-webkit-scrollbar-thumb{background:var(--or);border-radius:3px}
 
-  <!-- ════ LOADER ════ -->
-  <div id="page-loader">
-    <div class="loader-bg"></div>
-    <div class="loader-particles" aria-hidden="true">
-      <span></span><span></span><span></span>
-      <span></span><span></span><span></span>
+/* NAV */
+#navbar{
+  position:fixed;top:0;left:0;width:100%;z-index:999;
+  transition:background .4s,box-shadow .4s,height .3s;
+  padding:0 6%;display:flex;align-items:center;justify-content:space-between;height:80px;
+}
+#navbar.scrolled{
+  background:rgba(8,13,28,0.97);backdrop-filter:blur(16px);
+  box-shadow:0 2px 30px rgba(0,0,0,.5);height:64px;
+  border-bottom:1px solid rgba(232,146,10,.18);
+}
+.nav-logo img{height:50px;transition:height .3s;filter:drop-shadow(0 2px 8px rgba(0,0,0,.6))}
+#navbar.scrolled .nav-logo img{height:40px}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{
+  color:rgba(255,255,255,.75);text-decoration:none;
+  font-family:'Oswald',sans-serif;font-size:.95rem;letter-spacing:.1em;text-transform:uppercase;
+  transition:color .2s;position:relative;padding-bottom:4px;
+}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--or);transition:width .3s}
+.nav-links a:hover{color:var(--br)}
+.nav-links a:hover::after{width:100%}
+.nav-wpp{
+  display:flex;align-items:center;gap:8px;
+  background:var(--or);color:var(--esc);
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:.9rem;letter-spacing:.08em;text-transform:uppercase;
+  padding:10px 22px;border-radius:var(--R);text-decoration:none;
+  transition:background .2s,transform .15s,box-shadow .2s;
+  box-shadow:0 4px 20px rgba(232,146,10,.3);
+}
+.nav-wpp:hover{background:var(--or2);transform:translateY(-2px);box-shadow:0 8px 28px rgba(232,146,10,.45)}
+
+/* HERO */
+#hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
+.hero-img{
+  position:absolute;inset:0;z-index:0;
+  background:url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1800&q=80') center/cover no-repeat;
+}
+.hero-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(100deg,rgba(8,13,28,.97) 38%,rgba(8,13,28,.6) 70%,rgba(8,13,28,.3) 100%);
+}
+.hero-scanline{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(14,40,90,.05) 2px,rgba(14,40,90,.05) 4px);
+}
+.hero-content{position:relative;z-index:2;padding:140px 6% 80px;max-width:780px}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  background:rgba(232,146,10,.12);border:1px solid rgba(232,146,10,.4);
+  color:var(--or);border-radius:100px;padding:7px 18px;
+  font-family:'Oswald',sans-serif;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;
+  margin-bottom:28px;opacity:0;transform:translateY(20px);
+  animation:fadeUp .7s .2s ease forwards;
+}
+.hero-eyebrow .dot{width:7px;height:7px;background:var(--or);border-radius:50%;animation:blink 1.4s infinite;flex-shrink:0}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.1}}
+.hero-h1{
+  font-family:'Oswald',sans-serif;font-size:clamp(3rem,7vw,6rem);
+  font-weight:700;line-height:.95;letter-spacing:-.01em;text-transform:uppercase;
+  opacity:0;transform:translateY(30px);animation:fadeUp .7s .4s ease forwards;
+}
+.hero-h1 .gold{color:var(--or);display:block}
+.hero-h1 .stroke{-webkit-text-stroke:2px var(--br);color:transparent}
+.hero-sub{
+  margin-top:24px;max-width:500px;
+  color:rgba(255,255,255,.7);font-size:1.05rem;line-height:1.7;
+  opacity:0;transform:translateY(20px);animation:fadeUp .7s .6s ease forwards;
+}
+.hero-ctas{margin-top:36px;display:flex;gap:16px;flex-wrap:wrap;opacity:0;animation:fadeUp .7s .8s ease forwards}
+.btn-gold{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--or);color:var(--esc);
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:1rem;letter-spacing:.08em;text-transform:uppercase;
+  padding:15px 34px;border-radius:var(--R);text-decoration:none;
+  box-shadow:0 6px 28px rgba(232,146,10,.4);
+  transition:background .2s,transform .2s,box-shadow .2s;
+}
+.btn-gold:hover{background:var(--or2);transform:translateY(-3px);box-shadow:0 12px 36px rgba(232,146,10,.55)}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:10px;
+  border:2px solid rgba(255,255,255,.25);color:var(--br);
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:1rem;letter-spacing:.08em;text-transform:uppercase;
+  padding:15px 34px;border-radius:var(--R);text-decoration:none;
+  transition:border-color .2s,color .2s,background .2s;
+}
+.btn-ghost:hover{border-color:var(--or);color:var(--or);background:rgba(232,146,10,.06)}
+.hero-stats{margin-top:60px;display:flex;gap:0;opacity:0;animation:fadeUp .7s 1s ease forwards}
+.hstat{padding:20px 36px 20px 0;border-right:1px solid rgba(255,255,255,.12);margin-right:36px}
+.hstat:last-child{border:none;margin:0}
+.hstat-n{font-family:'Oswald',sans-serif;font-size:3rem;font-weight:700;color:var(--br);line-height:1}
+.hstat-n span{color:var(--or)}
+.hstat-l{color:var(--gr);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;margin-top:4px}
+.scroll-ind{
+  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  color:rgba(255,255,255,.3);font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;z-index:2;
+  animation:fadeIn 1s 1.5s ease both;
+}
+.mouse{width:24px;height:38px;border:2px solid rgba(255,255,255,.2);border-radius:12px;display:flex;justify-content:center;padding-top:6px}
+.wheel{width:3px;height:8px;background:var(--or);border-radius:2px;animation:wheelScroll 1.5s ease infinite}
+@keyframes wheelScroll{0%{transform:translateY(0);opacity:1}100%{transform:translateY(12px);opacity:0}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+/* TICKER */
+.ticker-wrap{background:var(--or);overflow:hidden;padding:12px 0;position:relative}
+.ticker{display:flex;gap:0;white-space:nowrap;animation:ticker 28s linear infinite}
+.ticker-item{
+  font-family:'Oswald',sans-serif;font-size:.88rem;font-weight:600;
+  color:var(--esc);letter-spacing:.12em;text-transform:uppercase;
+  padding:0 40px;display:flex;align-items:center;gap:12px;
+}
+.ticker-item::after{content:'◆';font-size:.5rem;opacity:.5}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* SECTION BASE */
+.section{padding:110px 6%}
+.sec-label{
+  font-family:'Oswald',sans-serif;font-size:.78rem;font-weight:500;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--or);
+  display:flex;align-items:center;gap:12px;margin-bottom:14px;
+}
+.sec-label::before{content:'';flex:0 0 32px;height:2px;background:var(--or)}
+.sec-h2{
+  font-family:'Oswald',sans-serif;font-size:clamp(2.2rem,4.5vw,3.8rem);
+  font-weight:700;line-height:1.0;text-transform:uppercase;
+}
+.sec-h2 em{font-style:normal;color:var(--or)}
+.sec-p{color:var(--gr);font-size:1rem;line-height:1.7;max-width:520px;margin-top:14px}
+
+/* SERVIÇOS */
+#servicos{background:var(--esc2)}
+.serv-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.serv-img-wrap{
+  position:sticky;top:120px;border-radius:16px;overflow:hidden;
+  aspect-ratio:3/4;box-shadow:0 24px 64px rgba(0,0,0,.6);
+}
+.serv-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
+.serv-img-wrap:hover img{transform:scale(1.04)}
+.serv-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,13,28,.85) 0%,transparent 55%)}
+.serv-img-badge{
+  position:absolute;bottom:24px;left:24px;right:24px;
+  background:rgba(8,13,28,.88);backdrop-filter:blur(10px);
+  border:1px solid rgba(232,146,10,.3);border-radius:10px;
+  padding:16px 20px;display:flex;align-items:center;gap:14px;
+}
+.serv-img-badge .bico{font-size:1.6rem}
+.serv-img-badge .btxt strong{display:block;font-weight:700;font-size:.95rem}
+.serv-img-badge .btxt span{color:var(--gr);font-size:.8rem}
+.serv-right{display:flex;flex-direction:column;gap:0;margin-top:40px}
+.serv-item{
+  display:flex;gap:24px;padding:28px 0;border-bottom:1px solid rgba(255,255,255,.07);
+  cursor:default;transition:padding-left .2s;
+}
+.serv-item:last-child{border:none}
+.serv-item:hover{padding-left:8px}
+.serv-num{
+  font-family:'Oswald',sans-serif;font-size:2.8rem;font-weight:700;
+  color:rgba(255,255,255,.06);line-height:1;flex-shrink:0;width:56px;transition:color .3s;
+}
+.serv-item:hover .serv-num{color:rgba(232,146,10,.25)}
+.serv-icon{font-size:1.8rem;margin-bottom:8px}
+.serv-title{
+  font-family:'Oswald',sans-serif;font-size:1.25rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:.04em;transition:color .3s;
+}
+.serv-item:hover .serv-title{color:var(--or)}
+.serv-desc{color:var(--gr);font-size:.9rem;line-height:1.6;margin-top:6px}
+
+/* SOBRE PARALLAX */
+#sobre{position:relative;padding:0;overflow:hidden;min-height:90vh;display:flex;align-items:center}
+.sobre-bg{
+  position:absolute;inset:0;z-index:0;
+  background:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1800&q=80') center/cover no-repeat;
+  transform:scale(1.12);will-change:transform;
+}
+.sobre-bg::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(8,13,28,.96) 45%,rgba(8,13,28,.55) 100%);
+}
+.sobre-content{
+  position:relative;z-index:2;padding:120px 6%;
+  max-width:640px;display:flex;flex-direction:column;gap:28px;
+}
+.sobre-tags{display:flex;flex-wrap:wrap;gap:10px}
+.tag{
+  background:rgba(232,146,10,.12);border:1px solid rgba(232,146,10,.3);
+  color:var(--or);padding:6px 16px;border-radius:100px;
+  font-family:'Oswald',sans-serif;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;
+}
+.sobre-stats{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
+.ostat{
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+  border-radius:12px;padding:22px 20px;transition:border-color .3s,transform .3s;
+}
+.ostat:hover{border-color:rgba(232,146,10,.35);transform:translateY(-3px)}
+.ostat-n{font-family:'Oswald',sans-serif;font-size:2.6rem;font-weight:700;color:var(--or);line-height:1}
+.ostat-l{color:var(--gr);font-size:.8rem;margin-top:4px;line-height:1.4}
+
+/* COMO FUNCIONA */
+#como{background:var(--esc)}
+.como-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+  margin-top:60px;border:1px solid rgba(255,255,255,.07);border-radius:16px;overflow:hidden;
+}
+.como-step{
+  padding:40px 28px;border-right:1px solid rgba(255,255,255,.07);
+  display:flex;flex-direction:column;gap:16px;
+  position:relative;overflow:hidden;transition:background .3s;
+}
+.como-step:last-child{border:none}
+.como-step:hover{background:rgba(26,42,74,.4)}
+.como-step::before{
+  content:attr(data-n);position:absolute;top:-10px;right:16px;
+  font-family:'Oswald',sans-serif;font-size:5.5rem;font-weight:700;
+  color:rgba(255,255,255,.03);line-height:1;
+}
+.como-icon{
+  width:56px;height:56px;border-radius:14px;
+  background:rgba(232,146,10,.12);border:1px solid rgba(232,146,10,.25);
+  display:flex;align-items:center;justify-content:center;font-size:1.6rem;
+}
+.como-title{font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.como-desc{color:var(--gr);font-size:.85rem;line-height:1.6}
+
+/* FROTA FULL-IMG */
+#frota{position:relative;padding:0;overflow:hidden;min-height:65vh;display:flex;align-items:center}
+.frota-bg{
+  position:absolute;inset:0;z-index:0;
+  background:url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1800&q=80') center/cover no-repeat;
+}
+.frota-bg::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(8,13,28,.1) 0%,rgba(8,13,28,.82) 50%,rgba(8,13,28,.97) 100%);
+}
+.frota-content{
+  position:relative;z-index:2;margin-left:auto;width:52%;
+  padding:100px 6% 100px 40px;display:flex;flex-direction:column;gap:28px;
+}
+.frota-list{list-style:none;display:flex;flex-direction:column;gap:14px}
+.frota-list li{display:flex;align-items:center;gap:14px;color:rgba(255,255,255,.85);font-size:.98rem}
+.li-ico{
+  width:36px;height:36px;border-radius:8px;flex-shrink:0;
+  background:rgba(232,146,10,.15);border:1px solid rgba(232,146,10,.3);
+  display:flex;align-items:center;justify-content:center;font-size:1rem;
+}
+
+/* DEPOIMENTOS */
+#depoimentos{background:var(--esc2)}
+.dep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px}
+.dep-card{
+  background:rgba(22,45,86,.25);border:1px solid rgba(39,86,168,.18);
+  border-radius:14px;padding:32px 28px;
+  display:flex;flex-direction:column;gap:16px;
+  transition:border-color .3s,transform .3s,box-shadow .3s;
+  position:relative;overflow:hidden;
+  transform-style:preserve-3d;
+}
+.dep-card::before{
+  content:'"';position:absolute;top:-20px;right:20px;
+  font-family:'Oswald',sans-serif;font-size:9rem;font-weight:700;
+  color:rgba(232,146,10,.06);line-height:1;pointer-events:none;
+}
+.dep-card:hover{border-color:rgba(232,146,10,.35);box-shadow:0 20px 48px rgba(0,0,0,.4)}
+.dep-stars{color:var(--or);font-size:1rem;letter-spacing:3px}
+.dep-text{color:rgba(255,255,255,.75);font-size:.92rem;line-height:1.7;font-style:italic}
+.dep-author{display:flex;align-items:center;gap:12px;margin-top:8px}
+.dep-avatar{
+  width:44px;height:44px;border-radius:50%;
+  background:linear-gradient(135deg,var(--az3),var(--or));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:700;color:var(--br);flex-shrink:0;
+}
+.dep-name strong{display:block;font-weight:700;font-size:.9rem}
+.dep-name span{color:var(--gr);font-size:.78rem}
+
+/* CONTATO */
+#contato{background:var(--esc)}
+.contato-layout{display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:center}
+.cinfo-cards{display:flex;flex-direction:column;gap:14px;margin-top:8px}
+.ccard{
+  display:flex;align-items:center;gap:20px;
+  background:rgba(22,45,86,.25);border:1px solid rgba(39,86,168,.18);
+  border-radius:12px;padding:20px 24px;text-decoration:none;color:var(--br);
+  transition:border-color .25s,transform .2s,box-shadow .2s;
+}
+.ccard:hover{border-color:rgba(232,146,10,.4);transform:translateX(6px);box-shadow:4px 0 24px rgba(232,146,10,.1)}
+.ccard-icon{
+  width:50px;height:50px;border-radius:12px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:1.4rem;
+}
+.ccard-icon.g{background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.3)}
+.ccard-icon.b{background:rgba(39,86,168,.2);border:1px solid rgba(39,86,168,.35)}
+.ccard-icon.p{background:rgba(232,146,10,.12);border:1px solid rgba(232,146,10,.3)}
+.ccard-text strong{display:block;font-weight:700;font-size:.95rem}
+.ccard-text span{color:var(--gr);font-size:.82rem}
+.map-box{
+  border-radius:14px;overflow:hidden;border:1px solid rgba(39,86,168,.25);
+  aspect-ratio:16/7;background:linear-gradient(135deg,#0d1f3c,#162d56);
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;
+  margin-top:16px;
+}
+.cform{
+  background:linear-gradient(135deg,rgba(22,45,86,.3),rgba(14,32,64,.3));
+  border:1px solid rgba(39,86,168,.22);border-radius:18px;padding:44px 40px;
+  display:flex;flex-direction:column;gap:22px;position:relative;overflow:hidden;
+}
+.cform::before{
+  content:'';position:absolute;top:-80px;right:-80px;width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(232,146,10,.08),transparent 70%);pointer-events:none;
+}
+.cform h3{font-family:'Oswald',sans-serif;font-size:1.8rem;font-weight:700;text-transform:uppercase}
+.frow{display:flex;flex-direction:column;gap:7px}
+.frow label{font-size:.75rem;font-weight:700;color:var(--gr);letter-spacing:.1em;text-transform:uppercase}
+.frow input,.frow select,.frow textarea{
+  background:rgba(0,0,0,.35);border:1px solid rgba(39,86,168,.25);
+  border-radius:9px;padding:13px 18px;
+  color:var(--br);font-family:'Nunito',sans-serif;font-size:.95rem;
+  outline:none;transition:border-color .25s,box-shadow .25s;width:100%;
+}
+.frow input::placeholder,.frow textarea::placeholder{color:rgba(255,255,255,.22)}
+.frow input:focus,.frow select:focus,.frow textarea:focus{border-color:var(--or);box-shadow:0 0 0 3px rgba(232,146,10,.12)}
+.frow textarea{resize:vertical;min-height:110px}
+.frow select option{background:#162d56}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.fsub{
+  background:var(--or);color:var(--esc);
+  font-family:'Oswald',sans-serif;font-weight:700;font-size:1.05rem;
+  letter-spacing:.08em;text-transform:uppercase;
+  border:none;border-radius:var(--R);padding:16px;cursor:pointer;width:100%;
+  transition:background .2s,transform .15s,box-shadow .2s;
+  box-shadow:0 4px 20px rgba(232,146,10,.3);
+}
+.fsub:hover{background:var(--or2);transform:translateY(-2px);box-shadow:0 8px 28px rgba(232,146,10,.45)}
+
+/* FOOTER */
+footer{background:#050810;border-top:1px solid rgba(232,146,10,.12);padding:60px 6% 32px}
+.foot-inner{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;
+  padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.05);
+}
+.foot-brand .logo img{height:46px;margin-bottom:18px}
+.foot-brand p{color:var(--gr);font-size:.87rem;line-height:1.7;max-width:280px}
+.foot-socials{display:flex;gap:10px;margin-top:20px}
+.foot-social{
+  width:38px;height:38px;border-radius:8px;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);
+  display:flex;align-items:center;justify-content:center;font-size:1rem;
+  text-decoration:none;transition:background .2s,border-color .2s,transform .2s;
+}
+.foot-social:hover{background:rgba(232,146,10,.15);border-color:rgba(232,146,10,.4);transform:translateY(-3px)}
+.foot-col h4{
+  font-family:'Oswald',sans-serif;font-size:.78rem;font-weight:600;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--or);margin-bottom:18px;
+}
+.foot-col ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+.foot-col ul li a{
+  color:var(--gr);text-decoration:none;font-size:.87rem;
+  transition:color .2s;display:flex;align-items:center;gap:6px;
+}
+.foot-col ul li a::before{content:'›';color:var(--or);font-size:1rem}
+.foot-col ul li a:hover{color:var(--br)}
+.foot-bottom{
+  padding-top:28px;display:flex;justify-content:space-between;align-items:center;
+  color:rgba(255,255,255,.25);font-size:.78rem;flex-wrap:wrap;gap:10px;
+}
+
+/* WPP FAB */
+.wpp-fab{
+  position:fixed;bottom:30px;right:30px;z-index:998;
+  width:62px;height:62px;border-radius:50%;background:#25d366;
+  display:flex;align-items:center;justify-content:center;font-size:1.9rem;text-decoration:none;
+  box-shadow:0 4px 24px rgba(37,211,102,.45);
+  animation:fabPop .5s 1.2s cubic-bezier(.34,1.56,.64,1) both;
+  transition:transform .2s,box-shadow .2s;
+}
+.wpp-fab:hover{transform:scale(1.12) rotate(-8deg);box-shadow:0 8px 36px rgba(37,211,102,.6)}
+.wpp-pulse{
+  position:absolute;width:100%;height:100%;border-radius:50%;
+  background:rgba(37,211,102,.3);animation:wppRipple 2s ease infinite;
+}
+@keyframes fabPop{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}
+@keyframes wppRipple{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.7);opacity:0}}
+
+/* DIVIDER */
+.divider-neon{height:1px;background:linear-gradient(90deg,transparent,rgba(232,146,10,.4) 30%,rgba(39,86,168,.5) 70%,transparent)}
+
+/* REVEAL ANIMATION */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease}
+.reveal.left{transform:translateX(-50px)}
+.reveal.right{transform:translateX(50px)}
+.reveal.visible{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .serv-layout{grid-template-columns:1fr}
+  .serv-img-wrap{display:none}
+  .como-grid{grid-template-columns:1fr 1fr}
+  .dep-grid{grid-template-columns:1fr 1fr}
+  .contato-layout{grid-template-columns:1fr;gap:48px}
+  .foot-inner{grid-template-columns:1fr 1fr;gap:36px}
+  .frota-content{width:100%;padding:80px 6%}
+}
+@media(max-width:768px){
+  .nav-links,.nav-wpp{display:none}
+  .dep-grid{grid-template-columns:1fr}
+  .como-grid{grid-template-columns:1fr}
+  .fgrid{grid-template-columns:1fr}
+  .hero-h1{font-size:clamp(2.4rem,10vw,4rem)}
+  .hstat{padding-right:20px;margin-right:20px}
+  .hstat-n{font-size:2rem}
+  .foot-inner{grid-template-columns:1fr;gap:28px}
+  .frota-bg::after{background:rgba(8,13,28,.92)}
+  .frota-content{width:100%}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">
+    <img src="rastreadores-branco.png" alt="Galeazzi Rastreadores"
+         onerror="this.outerHTML='<span style=\'font-family:Oswald,sans-serif;font-size:1.5rem;font-weight:700;color:#fff\'>GALEAZZI <span style=\'color:#e8920a\'>RASTREADORES</span></span>'">
+  </div>
+  <ul class="nav-links">
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#como">Como funciona</a></li>
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#depoimentos">Clientes</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+  <a href="https://wa.me/5546999999999" class="nav-wpp" target="_blank">💬 Orçamento grátis</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-img"></div>
+  <div class="hero-scanline"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow"><span class="dot"></span>&nbsp; Pato Branco – PR &nbsp;·&nbsp; Desde 2012</div>
+    <h1 class="hero-h1">
+      <span class="stroke">Rastreamento</span>
+      que você
+      <span class="gold">pode confiar.</span>
+    </h1>
+    <p class="hero-sub">Instalação profissional de rastreadores para carros, motos, caminhões e frotas. Monitoramento 24 horas, bloqueio remoto e tecnologia de ponta — com o atendimento de quem conhece a região.</p>
+    <div class="hero-ctas">
+      <a href="https://wa.me/5546999999999" class="btn-gold" target="_blank">💬 Falar no WhatsApp</a>
+      <a href="#servicos" class="btn-ghost">Ver serviços ↓</a>
     </div>
-    <div class="loader-center">
-      <div class="loader-radar">
-        <div class="lr-ring lr1"></div>
-        <div class="lr-ring lr2"></div>
-        <div class="lr-ring lr3"></div>
-        <div class="lr-sweep"></div>
-      </div>
-      <div class="loader-logo">
-        <img src="assets/logos/rastreadores-branco.png" alt="Rastreadores"
-             onerror="this.outerHTML='<span class=loader-logo-text>RASTREADORES</span>'">
-      </div>
-      <p class="loader-tagline">Protegendo suas conquistas</p>
-      <div class="loader-bar-wrap">
-        <div class="loader-bar" id="loader-bar"></div>
-      </div>
-      <span class="loader-status" id="loader-status">Iniciando sistema…</span>
-    </div>
-    <div class="loader-corner">
-      <span class="lc-dot"></span> Sistema Ativo
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-n">+12<span>anos</span></div><div class="hstat-l">de experiência</div></div>
+      <div class="hstat"><div class="hstat-n">+5<span>mil</span></div><div class="hstat-l">clientes atendidos</div></div>
+      <div class="hstat"><div class="hstat-n">24<span>h</span></div><div class="hstat-l">monitoramento</div></div>
     </div>
   </div>
-  <!-- ════ /LOADER ════ -->
+  <div class="scroll-ind">
+    <div class="mouse"><div class="wheel"></div></div>
+    <span>Scroll</span>
+  </div>
+</section>
 
-  <!-- CURSOR -->
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursor-ring"></div>
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <div class="ticker-item">Rastreamento Veicular</div>
+    <div class="ticker-item">Gestão de Frotas</div>
+    <div class="ticker-item">Bloqueio Remoto</div>
+    <div class="ticker-item">Monitoramento 24h</div>
+    <div class="ticker-item">Agronegócio</div>
+    <div class="ticker-item">Instalação Profissional</div>
+    <div class="ticker-item">Pato Branco – PR</div>
+    <div class="ticker-item">Rastreamento Veicular</div>
+    <div class="ticker-item">Gestão de Frotas</div>
+    <div class="ticker-item">Bloqueio Remoto</div>
+    <div class="ticker-item">Monitoramento 24h</div>
+    <div class="ticker-item">Agronegócio</div>
+    <div class="ticker-item">Instalação Profissional</div>
+    <div class="ticker-item">Pato Branco – PR</div>
+  </div>
+</div>
 
-  <!-- NAV -->
-  <nav id="navbar">
-    <a class="nav-logo" href="#">
-      <img src="assets/logos/rastreadores-azul.png" alt="Rastreadores"
-           onerror="this.outerHTML='<span class=nav-logo-text>RASTREADORES</span>'">
-    </a>
-    <ul class="nav-links">
-      <li><a href="#servicos">Serviços</a></li>
-      <li><a href="#como-funciona">Como Funciona</a></li>
-      <li><a href="#numeros">Números</a></li>
-      <li><a href="#sobre">Sobre</a></li>
-      <li><a href="./contato.html">Contato</a></li>
+<!-- SERVIÇOS -->
+<section id="servicos" class="section">
+  <div class="serv-layout">
+    <div class="serv-img-wrap reveal left">
+      <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=900&q=80" alt="Veículo rastreado"/>
+      <div class="serv-img-overlay"></div>
+      <div class="serv-img-badge">
+        <div class="bico">🛡️</div>
+        <div class="btxt"><strong>Instalação garantida</strong><span>Técnicos certificados na sua cidade</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="reveal">
+        <div class="sec-label">O que fazemos</div>
+        <h2 class="sec-h2">Soluções em <em>segurança</em><br>veicular</h2>
+        <p class="sec-p">Tecnologia avançada instalada por especialistas para proteger o que é seu, onde quer que esteja.</p>
+      </div>
+      <div class="serv-right">
+        <div class="serv-item reveal"><div class="serv-num">01</div><div><div class="serv-icon">🚗</div><div class="serv-title">Rastreamento Veicular</div><p class="serv-desc">GPS em tempo real para carros e motos. Acompanhe a localização pelo app a qualquer hora, de qualquer lugar.</p></div></div>
+        <div class="serv-item reveal"><div class="serv-num">02</div><div><div class="serv-icon">🚛</div><div class="serv-title">Gestão de Frotas</div><p class="serv-desc">Controle total de caminhões e veículos comerciais. Relatórios de percurso, velocidade e jornada do motorista.</p></div></div>
+        <div class="serv-item reveal"><div class="serv-num">03</div><div><div class="serv-icon">🔒</div><div class="serv-title">Bloqueio Remoto</div><p class="serv-desc">Em caso de roubo, bloqueie o veículo à distância pelo app ou acione nossa central. Ação imediata, 24 horas.</p></div></div>
+        <div class="serv-item reveal"><div class="serv-num">04</div><div><div class="serv-icon">🌾</div><div class="serv-title">Agronegócio</div><p class="serv-desc">Proteção para tratores, colheitadeiras e implementos. Cobertura mesmo nas fazendas mais remotas do Sudoeste do PR.</p></div></div>
+        <div class="serv-item reveal"><div class="serv-num">05</div><div><div class="serv-icon">📡</div><div class="serv-title">Monitoramento 24h</div><p class="serv-desc">Central ativa todos os dias do ano. Alertas automáticos de movimentação suspeita e saída de cerca virtual.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider-neon"></div>
+
+<!-- COMO FUNCIONA -->
+<section id="como" class="section">
+  <div class="reveal" style="text-align:center">
+    <div class="sec-label" style="justify-content:center">Como funciona</div>
+    <h2 class="sec-h2" style="text-align:center">Do contato à <em>proteção total</em></h2>
+    <p class="sec-p" style="margin:14px auto 0;text-align:center">Simples, rápido e sem complicação. Em poucos passos seu veículo já está protegido.</p>
+  </div>
+  <div class="como-grid">
+    <div class="como-step reveal" data-n="01"><div class="como-icon">💬</div><div class="como-title">Fale Conosco</div><p class="como-desc">Entre em contato pelo WhatsApp ou telefone. Nosso time responde na hora e orienta sobre a melhor solução.</p></div>
+    <div class="como-step reveal" data-n="02" style="transition-delay:.1s"><div class="como-icon">📋</div><div class="como-title">Escolha o Plano</div><p class="como-desc">Apresentamos as opções ideais para o seu veículo ou frota. Planos para pessoa física, empresas e agronegócio.</p></div>
+    <div class="como-step reveal" data-n="03" style="transition-delay:.2s"><div class="como-icon">🔧</div><div class="como-title">Instalação Profissional</div><p class="como-desc">Nossos técnicos vão até você ou você vem até nossa loja em Pato Branco. Instalação rápida e garantida.</p></div>
+    <div class="como-step reveal" data-n="04" style="transition-delay:.3s"><div class="como-icon">🛡️</div><div class="como-title">Protegido!</div><p class="como-desc">Pronto! Seu veículo está monitorado em tempo real. Acompanhe pelo aplicativo e durma tranquilo.</p></div>
+  </div>
+</section>
+
+<!-- SOBRE PARALLAX -->
+<section id="sobre">
+  <div class="sobre-bg" id="sobreBg"></div>
+  <div class="sobre-content">
+    <div class="reveal">
+      <div class="sec-label">Quem somos</div>
+      <h2 class="sec-h2">Referência em<br>Pato Branco <em>há +12 anos</em></h2>
+      <p class="sec-p">A Galeazzi nasceu do compromisso de proteger o patrimônio dos moradores e empresas do Sudoeste do Paraná. São mais de uma década levando tecnologia de rastreamento com atendimento próximo e humano.</p>
+    </div>
+    <div class="sobre-tags reveal">
+      <span class="tag">Pato Branco – PR</span>
+      <span class="tag">Desde 2012</span>
+      <span class="tag">Técnicos certificados</span>
+      <span class="tag">Suporte local</span>
+    </div>
+    <div class="sobre-stats reveal">
+      <div class="ostat"><div class="ostat-n" data-target="12" data-suffix="+">12+</div><div class="ostat-l">Anos de mercado no Sudoeste do Paraná</div></div>
+      <div class="ostat"><div class="ostat-n" data-target="5000" data-suffix="+">5000+</div><div class="ostat-l">Clientes protegidos na região</div></div>
+      <div class="ostat"><div class="ostat-n">24h</div><div class="ostat-l">Central de monitoramento ativa</div></div>
+      <div class="ostat"><div class="ostat-n">100%</div><div class="ostat-l">Compromissados com sua segurança</div></div>
+    </div>
+    <div class="reveal"><a href="#contato" class="btn-gold" style="align-self:flex-start;display:inline-flex">Fale com a gente →</a></div>
+  </div>
+</section>
+
+<div class="divider-neon"></div>
+
+<!-- FROTA -->
+<section id="frota">
+  <div class="frota-bg"></div>
+  <div class="frota-content">
+    <div class="reveal right">
+      <div class="sec-label">Frota & Agronegócio</div>
+      <h2 class="sec-h2">Proteja sua<br>operação <em>inteira</em></h2>
+      <p class="sec-p">De um caminhão à sua frota completa, do carro ao trator. A Galeazzi tem a solução certa para cada tipo de veículo e negócio.</p>
+    </div>
+    <ul class="frota-list reveal right" style="transition-delay:.15s">
+      <li><div class="li-ico">📍</div> Localização em tempo real de todos os veículos</li>
+      <li><div class="li-ico">⏰</div> Histórico completo de rotas e horários</li>
+      <li><div class="li-ico">🔔</div> Alertas de saída de área e excesso de velocidade</li>
+      <li><div class="li-ico">📊</div> Relatórios detalhados de desempenho</li>
+      <li><div class="li-ico">🌐</div> App disponível para Android e iOS</li>
     </ul>
-    <a href="#cta" class="btn-nav">Orçamento Grátis</a>
-    <button class="nav-hamburger" id="hamburger" aria-label="menu">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
-
-  <!-- NAV DRAWER MOBILE -->
-  <div class="nav-overlay" id="nav-overlay"></div>
-  <nav class="nav-drawer" id="nav-drawer" aria-label="Menu mobile">
-    <div class="nav-drawer-header">
-      <a class="nav-drawer-logo" href="#">
-        <img src="assets/logos/rastreadores-azul.png" alt="Rastreadores"
-             onerror="this.outerHTML='<span class=nav-drawer-logo-text>RASTREADORES</span>'">
-      </a>
-      <button class="nav-drawer-close" id="nav-drawer-close" aria-label="Fechar menu">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
-      </button>
+    <div class="reveal right" style="transition-delay:.3s">
+      <a href="https://wa.me/5546999999999" class="btn-gold" target="_blank">Quero proteger minha frota →</a>
     </div>
-    <ul class="nav-drawer-links">
-      <li><a href="#servicos">Serviços</a></li>
-      <li><a href="#como-funciona">Como Funciona</a></li>
-      <li><a href="#numeros">Números</a></li>
-      <li><a href="#sobre">Sobre</a></li>
-      <li><a href="./contato.html">Contato</a></li>
-    </ul>
-    <div class="nav-drawer-footer">
-      <a href="#cta" class="btn-nav">Orçamento Grátis</a>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section id="depoimentos" class="section">
+  <div class="reveal" style="text-align:center">
+    <div class="sec-label" style="justify-content:center">O que dizem nossos clientes</div>
+    <h2 class="sec-h2" style="text-align:center">Quem usa, <em>recomenda</em></h2>
+  </div>
+  <div class="dep-grid">
+    <div class="dep-card reveal">
+      <div class="dep-stars">★★★★★</div>
+      <p class="dep-text">"Instalei o rastreador na minha camionete e fiquei impressionado com a qualidade do serviço. O técnico foi super profissional e o app funciona perfeitamente. Muito mais tranquilo agora!"</p>
+      <div class="dep-author"><div class="dep-avatar">JC</div><div class="dep-name"><strong>João Carlos Oliveira</strong><span>Empresário — Pato Branco</span></div></div>
     </div>
-  </nav>
-
-  <!-- HERO -->
-  <section id="hero">
-    <div class="hero-noise"></div>
-    <div class="hero-glow-left"></div>
-    <div class="hero-glow-right"></div>
-
-    <!-- radar rings -->
-    <div class="radar" aria-hidden="true">
-      <div class="radar-ring r1"></div>
-      <div class="radar-ring r2"></div>
-      <div class="radar-ring r3"></div>
-      <div class="radar-sweep"></div>
+    <div class="dep-card reveal" style="transition-delay:.1s">
+      <div class="dep-stars">★★★★★</div>
+      <p class="dep-text">"Tenho três caminhões rastreados pela Galeazzi. O suporte é excelente, sempre atendem rápido quando preciso. Já recuperei uma carga graças ao sistema deles. Recomendo muito!"</p>
+      <div class="dep-author"><div class="dep-avatar">MR</div><div class="dep-name"><strong>Marcos Ribeiro</strong><span>Transportador — Francisco Beltrão</span></div></div>
     </div>
+    <div class="dep-card reveal" style="transition-delay:.2s">
+      <div class="dep-stars">★★★★★</div>
+      <p class="dep-text">"Coloquei rastreador na colheitadeira e no trator. O pessoal da Galeazzi entende do agronegócio da região, o sinal funciona até nas fazendas mais afastadas. Serviço de primeira!"</p>
+      <div class="dep-author"><div class="dep-avatar">AS</div><div class="dep-name"><strong>Antônio Sartori</strong><span>Produtor Rural — Região de Pato Branco</span></div></div>
+    </div>
+  </div>
+</section>
 
-    <div class="hero-inner">
-      <div class="hero-left">
-        <div class="hero-badge">
-          <span class="badge-dot"></span>
-          Monitoramento em tempo real · 24/7
-        </div>
+<div class="divider-neon"></div>
 
-        <h1 class="hero-title anim-fade-up">
-          Protegendo<br>
-          suas <em>conquistas</em><br>
-        </h1>
-
-        <p class="hero-sub anim-fade-up" style="--d:.18s">
-          Rastreamento veicular via satélite com monitoramento em tempo real e bloqueio remoto.
-          Mais segurança e controle para veículos e frotas em todo o Brasil.
-        </p>
-
-        <div class="hero-actions anim-fade-up" style="--d:.32s">
-          <a href="#servicos" class="btn-primary">
-            Ver Serviços
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-          <a href="#cta" class="btn-outline">Orçamento Grátis</a>
-        </div>
+<!-- CONTATO -->
+<section id="contato" class="section">
+  <div class="contato-layout">
+    <div>
+      <div class="reveal">
+        <div class="sec-label">Fale conosco</div>
+        <h2 class="sec-h2">Peça seu<br><em>orçamento</em> grátis</h2>
+        <p class="sec-p">Atendemos em Pato Branco e toda a região do Sudoeste do Paraná. Resposta rápida, sem enrolação.</p>
       </div>
-
-      <div class="hero-right" id="three-wrap">
-        <div id="three-container"></div>
-        <!-- halo glow behind satellite -->
-        <div class="sat-halo"></div>
+      <div class="cinfo-cards">
+        <a href="https://wa.me/5546999999999" class="ccard reveal" target="_blank"><div class="ccard-icon g">💬</div><div class="ccard-text"><strong>WhatsApp</strong><span>(46) 9 9999-9999 — Resposta na hora</span></div></a>
+        <a href="tel:+554699999999" class="ccard reveal" style="transition-delay:.1s"><div class="ccard-icon b">📞</div><div class="ccard-text"><strong>Telefone</strong><span>(46) 9999-9999</span></div></a>
+        <a href="#" class="ccard reveal" style="transition-delay:.2s"><div class="ccard-icon p">📍</div><div class="ccard-text"><strong>Localização</strong><span>Pato Branco – PR · Sudoeste do Paraná</span></div></a>
+      </div>
+      <div class="map-box reveal" style="transition-delay:.3s">
+        <span style="font-size:2.5rem">📍</span>
+        <span style="font-family:'Oswald',sans-serif;font-size:1rem;color:var(--or);letter-spacing:.1em;text-transform:uppercase">Pato Branco – PR</span>
+        <span style="color:var(--gr);font-size:.82rem">Sudoeste do Paraná</span>
       </div>
     </div>
+    <div class="cform reveal right">
+      <h3>Solicitar <em style="font-style:normal;color:var(--or)">orçamento</em></h3>
+      <div class="fgrid">
+        <div class="frow"><label>Seu nome</label><input type="text" id="f-nome" placeholder="João Silva"/></div>
+        <div class="frow"><label>WhatsApp</label><input type="tel" id="f-tel" placeholder="(46) 9 0000-0000"/></div>
+      </div>
+      <div class="frow"><label>Tipo de veículo</label>
+        <select id="f-vei">
+          <option value="">Selecione...</option>
+          <option>Carro</option><option>Moto</option><option>Caminhão / Van</option>
+          <option>Máquina agrícola / Trator</option><option>Frota (múltiplos veículos)</option><option>Outro</option>
+        </select>
+      </div>
+      <div class="frow"><label>Mensagem</label><textarea id="f-msg" placeholder="Conte mais sobre o que você precisa..."></textarea></div>
+      <button class="fsub" onclick="enviarWpp()">💬 Enviar pelo WhatsApp</button>
+      <p style="text-align:center;color:var(--gr);font-size:.78rem">Resposta em até 5 minutos no horário comercial</p>
+    </div>
+  </div>
+</section>
 
-    <!-- floating stat bar -->
-    <div class="hero-stats anim-fade-up" style="--d:.5s">
-      <div class="hstat">
-        <strong>10.000<sup>+</sup></strong>
-        <span>Veículos protegidos</span>
-      </div>
-      <div class="hstat-divider"></div>
-      <div class="hstat">
-        <strong>99,9<sup>%</sup></strong>
-        <span>Cobertura nacional</span>
-      </div>
-      <div class="hstat-divider"></div>
-      <div class="hstat">
-        <strong>&lt;48h</strong>
-        <span>Recuperação média</span>
-      </div>
-      <div class="hstat-divider"></div>
-      <div class="hstat">
-        <strong>ISO 9001</strong>
-        <span>Certificação</span>
+<!-- FOOTER -->
+<footer>
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <div class="logo"><img src="rastreadores-branco.png" alt="Galeazzi" onerror="this.outerHTML='<span style=\'font-family:Oswald,sans-serif;font-size:1.2rem;font-weight:700;color:#fff\'>GALEAZZI <span style=\'color:#e8920a\'>RASTREADORES</span></span>'"></div>
+      <p>Mais de 12 anos protegendo o patrimônio de pessoas e empresas em Pato Branco e toda a região do Sudoeste do Paraná.</p>
+      <div class="foot-socials">
+        <a href="#" class="foot-social" title="Instagram">📸</a>
+        <a href="#" class="foot-social" title="Facebook">👤</a>
+        <a href="https://wa.me/5546999999999" class="foot-social" target="_blank" title="WhatsApp">💬</a>
       </div>
     </div>
-  </section>
+    <div class="foot-col"><h4>Serviços</h4><ul><li><a href="#servicos">Rastreamento Veicular</a></li><li><a href="#servicos">Gestão de Frotas</a></li><li><a href="#servicos">Bloqueio Remoto</a></li><li><a href="#servicos">Monitoramento 24h</a></li><li><a href="#servicos">Agronegócio</a></li></ul></div>
+    <div class="foot-col"><h4>Empresa</h4><ul><li><a href="#sobre">Sobre nós</a></li><li><a href="#como">Como funciona</a></li><li><a href="#depoimentos">Depoimentos</a></li><li><a href="#contato">Contato</a></li></ul></div>
+    <div class="foot-col"><h4>Contato</h4><ul><li><a href="https://wa.me/5546999999999" target="_blank">(46) 9 9999-9999</a></li><li><a href="tel:+554699999999">(46) 9999-9999</a></li><li><a href="#">Pato Branco – PR</a></li></ul></div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2024 Galeazzi Rastreadores — Pato Branco, PR. Todos os direitos reservados.</span>
+    <span>Feito com ❤️ para proteger o que é seu.</span>
+  </div>
+</footer>
 
-  <!-- SERVIÇOS -->
-  <section id="servicos" class="section-light">
-    <div class="container">
-      <div class="section-head">
-        <div class="section-tag">Nossos Serviços</div>
-        <h2>Proteção <span>inteligente</span><br>em cada detalhe</h2>
-      </div>
-      <div class="services-grid">
+<a href="https://wa.me/5546999999999" class="wpp-fab" target="_blank" title="WhatsApp">
+  <div class="wpp-pulse"></div>💬
+</a>
 
-        <div class="scard reveal">
-          <div class="scard-num">01</div>
-          <div class="scard-icon">📡</div>
-          <h4>Rastreamento GPS</h4>
-          <p>Monitoramento em tempo real via satélite com precisão de 3 metros. App iOS e Android com histórico completo de rotas e alertas instantâneos.</p>
-          <div class="scard-line"></div>
-        </div>
+<script>
+/* NAV SCROLL */
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 60), {passive:true});
 
-        <div class="scard reveal" style="--rd:.1s">
-          <div class="scard-num">02</div>
-          <div class="scard-icon">🔧</div>
-          <h4>Instalação Certificada</h4>
-          <p>Técnico especializado instala de forma discreta em até 1 hora. Sem marcas visíveis, sem interferência na garantia do fabricante.</p>
-          <div class="scard-line"></div>
-        </div>
+/* SCROLL REVEAL */
+const revealEls = document.querySelectorAll('.reveal');
+const revObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const delay = parseFloat(e.target.style.transitionDelay) * 1000 || 0;
+    setTimeout(() => e.target.classList.add('visible'), delay);
+    revObs.unobserve(e.target);
+  });
+}, {threshold: 0.1, rootMargin:'0px 0px -40px 0px'});
+revealEls.forEach(el => revObs.observe(el));
 
-        <div class="scard reveal" style="--rd:.2s">
-          <div class="scard-num">03</div>
-          <div class="scard-icon">📞</div>
-          <h4>Central 24/7</h4>
-          <p>Bloqueio remoto imediato, localização em tempo real e acionamento das autoridades. Nossa central nunca dorme.</p>
-          <div class="scard-line"></div>
-        </div>
+/* PARALLAX SOBRE */
+const sobreBg = document.getElementById('sobreBg');
+const sobreSec = document.getElementById('sobre');
+function doParallax() {
+  if (!sobreBg || !sobreSec) return;
+  const rect = sobreSec.getBoundingClientRect();
+  if (rect.bottom < -100 || rect.top > innerHeight + 100) return;
+  const p = -rect.top / (rect.height + innerHeight);
+  sobreBg.style.transform = `scale(1.12) translateY(${p * 80}px)`;
+}
+window.addEventListener('scroll', doParallax, {passive:true});
+doParallax();
 
-        <div class="scard reveal" style="--rd:.3s">
-          <div class="scard-num">04</div>
-          <div class="scard-icon">🚛</div>
-          <h4>Gestão de Frotas</h4>
-          <p>Painel corporativo completo: controle de motoristas, consumo de combustível, manutenções preventivas e cerca virtual personalizada.</p>
-          <div class="scard-line"></div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- COMO FUNCIONA -->
-  <section id="como-funciona" class="section-dark">
-    <div class="container">
-      <div class="section-head">
-        <div class="section-tag">Como Funciona</div>
-        <h2>Simples, rápido<br>e <span>eficiente</span></h2>
-      </div>
-
-      <div class="steps-layout">
-        <!-- mockup -->
-        <div class="dashboard-mockup reveal">
-          <div class="dm-header">
-            <div class="dm-dots">
-              <span style="background:#FF5F57"></span>
-              <span style="background:#FFBD2E"></span>
-              <span style="background:#28C840"></span>
-            </div>
-            <span class="dm-title">Painel de Controle — Rastreadores</span>
-          </div>
-          <div class="dm-body">
-            <div class="dm-map">
-              <div class="dm-grid-h"></div>
-              <div class="dm-grid-v"></div>
-              <div class="dm-pin pin-active">
-                <div class="pin-pulse"></div>
-              </div>
-              <div class="dm-pin pin-secondary" style="left:62%;top:35%"></div>
-              <div class="dm-route"></div>
-              <div class="dm-live-badge">● AO VIVO</div>
-            </div>
-            <div class="dm-stats">
-              <div class="dm-stat">
-                <span class="ds-val">84 km/h</span>
-                <span class="ds-lbl">Velocidade</span>
-              </div>
-              <div class="dm-stat">
-                <span class="ds-val" style="color:var(--gold)">São Paulo</span>
-                <span class="ds-lbl">Localização</span>
-              </div>
-              <div class="dm-stat">
-                <span class="ds-val" style="color:var(--signal)">Online</span>
-                <span class="ds-lbl">Status</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- steps -->
-        <ol class="steps-list">
-          <li class="step reveal">
-            <div class="step-num">01</div>
-            <div class="step-body">
-              <h4>Contratação e Agendamento</h4>
-              <p>Escolha seu plano online ou por telefone. Agendamos no melhor horário para você, sem burocracia.</p>
-            </div>
-          </li>
-          <li class="step reveal" style="--rd:.12s">
-            <div class="step-num">02</div>
-            <div class="step-body">
-              <h4>Instalação em 1 Hora</h4>
-              <p>Técnico certificado instala o módulo GPS de forma discreta, preservando a garantia do veículo.</p>
-            </div>
-          </li>
-          <li class="step reveal" style="--rd:.24s">
-            <div class="step-num">03</div>
-            <div class="step-body">
-              <h4>Monitoramento Ativo</h4>
-              <p>Acompanhe seu veículo 24h pelo app. Nossa central monitora alertas e age imediatamente.</p>
-            </div>
-          </li>
-          <li class="step reveal" style="--rd:.36s">
-            <div class="step-num">04</div>
-            <div class="step-body">
-              <h4>Recuperação Garantida</h4>
-              <p>Em caso de roubo, bloqueamos remotamente e coordenamos a recuperação com as autoridades.</p>
-            </div>
-          </li>
-        </ol>
-      </div>
-    </div>
-  </section>
-
-  <!-- NÚMEROS -->
-  <section id="numeros" class="section-accent">
-    <div class="container">
-      <div class="section-head centered">
-        <div class="section-tag tag-ligth">Em Números</div>
-        <h2>Resultados que<br><span>falam por si</span></h2>
-      </div>
-      <div class="stats-grid">
-        <div class="stat-box reveal">
-          <div class="stat-val"><span class="count" data-target="10000">0</span><sup>+</sup></div>
-          <div class="stat-rule"></div>
-          <div class="stat-lbl">Veículos protegidos</div>
-        </div>
-        <div class="stat-box reveal" style="--rd:.1s">
-          <div class="stat-val"><span class="count" data-target="94">0</span><sup>%</sup></div>
-          <div class="stat-rule"></div>
-          <div class="stat-lbl">Taxa de recuperação</div>
-        </div>
-        <div class="stat-box reveal" style="--rd:.2s">
-          <div class="stat-val"><span class="count" data-target="5">0</span><sup>K</sup></div>
-          <div class="stat-rule"></div>
-          <div class="stat-lbl">Clientes satisfeitos</div>
-        </div>
-        <div class="stat-box reveal" style="--rd:.3s">
-          <div class="stat-val"><span class="count" data-target="24">0</span><sup>h</sup></div>
-          <div class="stat-rule"></div>
-          <div class="stat-lbl">Suporte disponível</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TECNOLOGIA -->
-  <section id="tecnologia" class="section-light">
-    <div class="container">
-      <div class="features-layout">
-        <div class="features-text">
-          <div class="section-tag">Tecnologia</div>
-          <h2>Infraestrutura<br>de <span>nível militar</span></h2>
-          <div class="feat-list">
-            <div class="feat reveal">
-              <div class="feat-ico">🛰️</div>
-              <div>
-                <h5>Rastreamento via Satélite</h5>
-                <p>Localização do veículo em tempo real com ampla cobertura em todo o Brasil.</p>
-              </div>
-            </div>
-
-            <div class="feat reveal" style="--rd:.1s">
-              <div class="feat-ico">📍</div>
-              <div>
-                <h5>Monitoramento em Tempo Real</h5>
-                <p>Acompanhe seu veículo a qualquer momento pelo celular ou computador.</p>
-              </div>
-            </div>
-
-            <div class="feat reveal" style="--rd:.2s">
-              <div class="feat-ico">🔐</div>
-              <div>
-                <h5>Dados Seguros</h5>
-                <p>Informações protegidas com tecnologia segura para garantir sua privacidade.</p>
-              </div>
-            </div>
-
-            <div class="feat reveal" style="--rd:.3s">
-              <div class="feat-ico">⚡</div>
-              <div>
-                <h5>Bloqueio Remoto</h5>
-                <p>Mais segurança com a possibilidade de bloqueio do veículo em situações de risco.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="orbit-visual reveal">
-          <div class="orbit-outer">
-            <div class="orbit-ring-anim"></div>
-            <div class="orbit-node" style="--a:0deg">🛰️</div>
-            <div class="orbit-node" style="--a:90deg">📱</div>
-            <div class="orbit-node" style="--a:180deg">🔐</div>
-            <div class="orbit-node" style="--a:270deg">🚗</div>
-            <div class="orbit-core">📡</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SOBRE -->
-  <section id="sobre" class="section-dark">
-    <div class="container">
-      <div class="sobre-layout">
-
-        <div class="sobre-card reveal">
-          <div class="sc-tag">
-            <span class="sc-dot"></span> Sistema Ativo
-          </div>
-          <div class="sc-logo-area">
-            <img src="assets/logos/rastreadores-branco.png" alt="Rastreadores"
-                 onerror="this.outerHTML='<div class=sc-logo-fallback>RASTREADORES</div>'">
-          </div>
-          <div class="sc-metrics">
-            <div class="sc-metric">
-              <strong>10+</strong><span>Anos de mercado</span>
-            </div>
-            <div class="sc-metric">
-              <strong>38</strong><span>Estados cobertos</span>
-            </div>
-            <div class="sc-metric">
-              <strong>200+</strong><span>Técnicos cert.</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="sobre-text">
-          <div class="section-tag">Sobre Nós</div>
-          <h2>Tecnologia que<br><span>protege o que</span><br>importa</h2>
-          <p>Fundada por especialistas em segurança veicular, a Rastreadores nasceu com propósito claro: usar tecnologia de ponta para proteger o que as pessoas conquistaram com esforço.</p>
-          <p>Hoje somos referência nacional. Nossa equipe certificada ISO 9001 opera com os mais altos padrões de qualidade, atendendo desde proprietários individuais até grandes frotas corporativas.</p>
-          <ul class="check-list">
-            <li><span class="chk">✓</span> Cobertura nacional de 99,9%</li>
-            <li><span class="chk">✓</span> Recuperação média em menos de 48 horas</li>
-            <li><span class="chk">✓</span> App multiplataforma iOS e Android</li>
-            <li><span class="chk">✓</span> Central de monitoramento própria com redundância</li>
-            <li><span class="chk">✓</span> Integração direta com Polícia em todos os estados</li>
-          </ul>
-          <a href="#cta" class="btn-primary">
-            Conheça os planos
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section id="cta" class="section-cta">
-    <div class="cta-glow"></div>
-    <div class="container">
-      <div class="cta-inner">
-        <div class="section-tag tag-dark centered">Comece Agora</div>
-        <h2 class="reveal">Seu veículo merece<br>proteção <span>real</span></h2>
-        <p class="reveal" style="--rd:.1s">Solicite uma demonstração gratuita. Sem compromisso, sem burocracia.<br>Nossa equipe entra em contato em até 2 horas.</p>
-        <div class="cta-actions reveal" style="--rd:.2s">
-          <a href="contato.html" class="btn-primary btn-lg">
-            Falar com Especialista
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-          <a href="tel:08000000000" class="btn-outline btn-lg">📞 0800 000 0000</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <img src="assets/logos/rastreadores-branco.png" alt="Rastreadores"
-               onerror="this.outerHTML='<span class=footer-logo-text>RASTREADORES</span>'">
-          <p>Tecnologia de rastreamento veicular para proteger suas conquistas. Monitoramento 24/7 em todo o Brasil.</p>
-        </div>
-        <div class="footer-col">
-          <h6>Serviços</h6>
-          <ul>
-            <li><a href="#">Rastreamento GPS</a></li>
-            <li><a href="#">Gestão de Frotas</a></li>
-            <li><a href="#">Bloqueio Remoto</a></li>
-            <li><a href="#">Instalação</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h6>Empresa</h6>
-          <ul>
-            <li><a href="#">Sobre Nós</a></li>
-            <li><a href="#">Certificações</a></li>
-            <li><a href="#">Parceiros</a></li>
-            <li><a href="contato.html">Contato</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h6>Suporte</h6>
-          <ul>
-            <li><a href="#">Central 24/7</a></li>
-            <li><a href="#">App Mobile</a></li>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">Privacidade</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>© 2024 Rastreadores. Todos os direitos reservados.</p>
-        <div class="footer-status">
-          <span class="status-dot"></span>
-          Todos os sistemas operacionais
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Scripts: Three.js via importmap + ES module -->
-  <script defer src="https://unpkg.com/es-module-shims@1.8.0/dist/es-module-shims.js"></script>
-  <script type="importmap">
-  {
-    "imports": {
-      "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
-      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+/* COUNTER ANIMATION */
+const counterEls = document.querySelectorAll('.ostat-n[data-target]');
+const cntObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    const target = parseInt(el.dataset.target);
+    const suffix = el.dataset.suffix || '';
+    const dur = 1400;
+    const start = performance.now();
+    function tick(now) {
+      const t = Math.min((now - start) / dur, 1);
+      const ease = 1 - Math.pow(1 - t, 3);
+      const val = Math.round(ease * target);
+      el.textContent = target >= 1000 ? (val >= 1000 ? Math.round(val/1000)+'mil' : val) + suffix : val + suffix;
+      if (t < 1) requestAnimationFrame(tick);
+      else el.textContent = target >= 1000 ? Math.round(target/1000)+'mil' + suffix : target + suffix;
     }
-  }
-  </script>
-  <script defer src="script.js"></script>
-  <script type="module" src="./assets/js/satellite.js"></script>
+    requestAnimationFrame(tick);
+    cntObs.unobserve(el);
+  });
+}, {threshold: 0.5});
+counterEls.forEach(el => cntObs.observe(el));
 
-  <script>
-(function () {
-  var loader   = document.getElementById('page-loader');
-  var bar      = document.getElementById('loader-bar');
-  var statusEl = document.getElementById('loader-status');
-  var done     = false;
-  var iv;
+/* CARD TILT */
+document.querySelectorAll('.dep-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5;
+    const y = (e.clientY - r.top) / r.height - 0.5;
+    card.style.transform = `translateY(-5px) rotateX(${-y*7}deg) rotateY(${x*7}deg)`;
+  });
+  card.addEventListener('mouseleave', () => card.style.transform = '');
+});
 
-  function hide() {
-    if (done) return;
-    done = true;
-    clearInterval(iv);
-    if (bar) bar.style.transform = 'scaleX(1)';
-    if (statusEl) statusEl.textContent = 'Sistema pronto!';
-    setTimeout(function () {
-      loader.classList.add('loader-out');
-      document.body.classList.remove('loading');
-      setTimeout(function () { if (loader && loader.parentNode) loader.remove(); }, 800);
-    }, 300);
-  }
+/* FORM → WPP */
+function enviarWpp() {
+  const n = document.getElementById('f-nome')?.value || '';
+  const t = document.getElementById('f-tel')?.value || '';
+  const v = document.getElementById('f-vei')?.value || '';
+  const m = document.getElementById('f-msg')?.value || '';
+  const txt = `Olá! Quero um orçamento!\n\n👤 Nome: ${n}\n📱 Contato: ${t}\n🚗 Veículo: ${v}\n💬 Mensagem: ${m}`;
+  window.open('https://wa.me/5546999999999?text='+encodeURIComponent(txt), '_blank');
+}
 
-  window.addEventListener('satellite:ready', hide);
-  window.addEventListener('load', hide);
-  setTimeout(hide, 4000);
-
-  var msgs = ['Iniciando sistema…','Conectando satélites…','Carregando módulos…','Quase lá…'];
-  var p = 0, mi = 0;
-  iv = setInterval(function () {
-    p = Math.min(p + Math.random() * 10, 90);
-    if (bar) bar.style.transform = 'scaleX(' + p / 100 + ')';
-    if (statusEl && mi < msgs.length - 1 && p > (mi + 1) * 22) statusEl.textContent = msgs[++mi];
-  }, 200);
-})();
-  </script>
+/* ACTIVE NAV LINK */
+const sections = document.querySelectorAll('section[id]');
+const links = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (scrollY >= s.offsetTop - 100) cur = s.id; });
+  links.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#'+cur ? 'var(--or)' : '';
+  });
+}, {passive:true});
+</script>
 </body>
+</html>
