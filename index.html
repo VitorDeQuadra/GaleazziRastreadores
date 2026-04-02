@@ -5,23 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Galeazzi Rastreadores | Pato Branco – PR</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --az:#0a2463;
-  --az2:#1a47a8;
-  --az3:#2563eb;
-  --az-soft:#dbeafe;
-  --az-pale:#eff6ff;
-  --az-mist:#f4f8ff;
-  --or:#ff6200;
-  --or2:#ff8233;
-  --or-pale:#fff3ec;
-  --br:#ffffff;
-  --tx:#0d1c3a;
-  --tx2:#3a5070;
-  --tx3:#7a92b4;
+  --az:#0a2463;--az2:#1a47a8;--az3:#2563eb;
+  --az-soft:#dbeafe;--az-pale:#eff6ff;--az-mist:#f4f8ff;
+  --or:#ff6200;--or2:#ff8233;--or-pale:#fff3ec;
+  --br:#ffffff;--tx:#0d1c3a;--tx2:#3a5070;--tx3:#7a92b4;
   --R:12px;
   --sh-sm:0 2px 14px rgba(10,36,99,.07);
   --sh-md:0 8px 36px rgba(10,36,99,.13);
@@ -29,9 +20,9 @@
 }
 html{scroll-behavior:smooth}
 body{font-family:'Inter',sans-serif;background:var(--br);color:var(--tx);overflow-x:hidden}
-::-webkit-scrollbar{width:5px}
-::-webkit-scrollbar-track{background:var(--az-pale)}
-::-webkit-scrollbar-thumb{background:var(--az3);border-radius:3px}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--az)}
+::-webkit-scrollbar-thumb{background:var(--or);border-radius:2px}
 
 /* NAV */
 #navbar{
@@ -44,13 +35,15 @@ body{font-family:'Inter',sans-serif;background:var(--br);color:var(--tx);overflo
   box-shadow:0 2px 28px rgba(10,36,99,.1);height:64px;
   border-bottom:1px solid rgba(37,99,235,.1);
 }
-.nav-logo img{height:58px;transition:height .3s}
-#navbar.scrolled .nav-logo img{height:48px}
+.nav-logo{font-family:'Poppins',sans-serif;font-size:1.35rem;font-weight:900;letter-spacing:-.02em;color:#fff;transition:color .3s}
+.nav-logo img{height:48px}
+.nav-logo span{color:var(--or)}
+#navbar.scrolled .nav-logo{color:var(--az)}
 .nav-links{display:flex;gap:36px;list-style:none}
 .nav-links a{
-  color:rgba(255,255,255,.85);text-decoration:none;
-  font-family:'Poppins',sans-serif;font-size:.82rem;font-weight:600;
-  letter-spacing:.07em;text-transform:uppercase;
+  color:rgba(255,255,255,.8);text-decoration:none;
+  font-family:'Poppins',sans-serif;font-size:.78rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;
   transition:color .2s;position:relative;padding-bottom:4px;
 }
 #navbar.scrolled .nav-links a{color:var(--tx)}
@@ -60,59 +53,77 @@ body{font-family:'Inter',sans-serif;background:var(--br);color:var(--tx);overflo
 .nav-wpp{
   display:flex;align-items:center;gap:8px;
   background:var(--or);color:#fff;
-  font-family:'Poppins',sans-serif;font-weight:700;font-size:.8rem;
+  font-family:'Poppins',sans-serif;font-weight:700;font-size:.78rem;
   letter-spacing:.07em;text-transform:uppercase;
-  padding:11px 24px;border-radius:100px;text-decoration:none;
+  padding:11px 22px;border-radius:100px;text-decoration:none;
   box-shadow:0 4px 20px rgba(255,98,0,.35);
-  transition:background .2s,transform .15s,box-shadow .2s;
+  transition:background .2s,transform .15s;
 }
-.nav-wpp:hover{background:var(--or2);transform:translateY(-2px);box-shadow:0 8px 28px rgba(255,98,0,.5)}
+.nav-wpp:hover{background:var(--or2);transform:translateY(-2px)}
 
 /* HERO */
-#hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
-.hero-img{
-  position:absolute;inset:0;z-index:0;
-  background:url('./frota.png') right center / cover no-repeat;
-}
-.hero-img::after{
+#hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;background:#020c20}
+.hero-video-wrap{position:absolute;inset:0;z-index:0;overflow:hidden}
+.hero-video-wrap video{width:100%;height:100%;object-fit:cover;opacity:.8;pointer-events:none;user-select:none}
+.hero-video-wrap::after{
   content:'';position:absolute;inset:0;
   background:linear-gradient(105deg,
-    rgba(8,20,60,.95) 0%,
-    rgba(10,36,99,.88) 35%,
-    rgba(13,52,140,.72) 60%,
-    rgba(20,70,180,.45) 80%,
-    rgba(30,90,200,.2) 100%);
+    rgba(2,10,35,.97) 0%,
+    rgba(8,22,65,.91) 28%,
+    rgba(10,36,99,.80) 52%,
+    rgba(13,52,140,.52) 72%,
+    rgba(20,70,180,.22) 100%);
 }
-.hero-scanline{
+.hero-bg-fallback{
+  position:absolute;inset:0;z-index:0;
+  background:linear-gradient(135deg,#020c20 0%,#0a2463 50%,#020c20 100%);
+  background-size:200% 200%;animation:bgMove 8s ease infinite;
+}
+@keyframes bgMove{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.hero-scanlines{
   position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,20,80,.03) 3px,rgba(0,20,80,.03) 6px);
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,20,80,.04) 2px,rgba(0,20,80,.04) 4px);
 }
-.hero-content{position:relative;z-index:2;padding:140px 6% 80px;max-width:720px}
+.hero-grid-overlay{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background-image:linear-gradient(rgba(37,99,235,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,235,.05) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 20%,transparent 100%);
+  -webkit-mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 20%,transparent 100%);
+}
+.hero-content{position:relative;z-index:2;padding:140px 6% 80px;max-width:780px}
 .hero-eyebrow{
   display:inline-flex;align-items:center;gap:10px;
-  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
-  color:rgba(255,255,255,.9);border-radius:100px;padding:7px 18px;
-  font-family:'Poppins',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
-  margin-bottom:28px;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);
+  color:rgba(255,255,255,.82);border-radius:100px;padding:7px 18px;
+  font-family:'Poppins',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  margin-bottom:30px;opacity:0;transform:translateY(20px);
+  animation:fadeUp .7s .3s forwards;
 }
 .hero-eyebrow .dot{width:7px;height:7px;background:var(--or);border-radius:50%;animation:blink 1.4s infinite;flex-shrink:0}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.1}}
 .hero-h1{
   font-family:'Poppins',sans-serif;
-  font-size:clamp(3rem,6.5vw,5.6rem);
-  font-weight:800;line-height:.97;letter-spacing:-.02em;text-transform:uppercase;color:#fff;
+  font-size:clamp(3rem,6.5vw,5.8rem);
+  font-weight:900;line-height:.94;letter-spacing:-.03em;text-transform:uppercase;color:#fff;
+  opacity:0;transform:translateY(40px);animation:fadeUp .85s .5s forwards;
 }
-.hero-h1 .stroke{-webkit-text-stroke:2px rgba(255,255,255,.5);color:transparent}
+.hero-h1 .outline{-webkit-text-stroke:2px rgba(255,255,255,.28);color:transparent}
 .hero-h1 .gold{color:var(--or)}
 .hero-sub{
-  margin-top:22px;max-width:500px;
-  color:rgba(255,255,255,.72);font-size:1.02rem;line-height:1.75;font-weight:400;
+  margin-top:22px;max-width:520px;
+  color:rgba(255,255,255,.62);font-size:1rem;line-height:1.8;
+  opacity:0;transform:translateY(30px);animation:fadeUp .75s .75s forwards;
 }
-.hero-ctas{margin-top:38px;display:flex;gap:14px;flex-wrap:wrap}
+.hero-ctas{
+  margin-top:38px;display:flex;gap:14px;flex-wrap:wrap;
+  opacity:0;transform:translateY(20px);animation:fadeUp .7s .95s forwards;
+}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
 .btn-gold{
   display:inline-flex;align-items:center;gap:10px;
   background:var(--or);color:#fff;
-  font-family:'Poppins',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.06em;text-transform:uppercase;
+  font-family:'Poppins',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;
   padding:15px 34px;border-radius:100px;text-decoration:none;
   box-shadow:0 6px 28px rgba(255,98,0,.45);
   transition:background .2s,transform .2s,box-shadow .2s;
@@ -120,46 +131,47 @@ body{font-family:'Inter',sans-serif;background:var(--br);color:var(--tx);overflo
 .btn-gold:hover{background:var(--or2);transform:translateY(-3px);box-shadow:0 12px 36px rgba(255,98,0,.6)}
 .btn-ghost{
   display:inline-flex;align-items:center;gap:10px;
-  border:2px solid rgba(255,255,255,.3);color:#fff;
-  font-family:'Poppins',sans-serif;font-weight:600;font-size:.88rem;letter-spacing:.06em;text-transform:uppercase;
+  border:2px solid rgba(255,255,255,.24);color:#fff;
+  font-family:'Poppins',sans-serif;font-weight:600;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;
   padding:15px 34px;border-radius:100px;text-decoration:none;
   transition:border-color .2s,background .2s;
 }
-.btn-ghost:hover{border-color:rgba(255,255,255,.7);background:rgba(255,255,255,.08)}
+.btn-ghost:hover{border-color:rgba(255,255,255,.58);background:rgba(255,255,255,.07)}
 .hero-stats{
-  margin-top:56px;display:flex;
-  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);
-  border-radius:18px;overflow:hidden;backdrop-filter:blur(12px);width:fit-content;
+  margin-top:56px;display:inline-flex;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+  border-radius:18px;overflow:hidden;backdrop-filter:blur(12px);
+  opacity:0;animation:fadeUp .8s 1.15s forwards;
 }
-.hstat{padding:20px 32px;border-right:1px solid rgba(255,255,255,.1)}
+.hstat{padding:18px 30px;border-right:1px solid rgba(255,255,255,.08)}
 .hstat:last-child{border:none}
-.hstat-n{font-family:'Poppins',sans-serif;font-size:2.3rem;font-weight:800;color:#fff;line-height:1}
+.hstat-n{font-family:'Poppins',sans-serif;font-size:2.2rem;font-weight:900;color:#fff;line-height:1}
 .hstat-n span{color:var(--or)}
-.hstat-l{color:rgba(255,255,255,.5);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;margin-top:4px}
+.hstat-l{color:rgba(255,255,255,.38);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;margin-top:5px}
 .scroll-ind{
-  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+  position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
   display:flex;flex-direction:column;align-items:center;gap:8px;
-  color:rgba(255,255,255,.3);font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;z-index:2;
+  color:rgba(255,255,255,.22);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;z-index:2;
 }
-.mouse{width:22px;height:36px;border:1.5px solid rgba(255,255,255,.2);border-radius:12px;display:flex;justify-content:center;padding-top:6px}
-.wheel{width:3px;height:7px;background:var(--or);border-radius:2px;animation:wheelScroll 1.5s ease infinite}
-@keyframes wheelScroll{0%{transform:translateY(0);opacity:1}100%{transform:translateY(12px);opacity:0}}
+.mouse{width:20px;height:34px;border:1.5px solid rgba(255,255,255,.16);border-radius:12px;display:flex;justify-content:center;padding-top:6px}
+.wheel{width:3px;height:6px;background:var(--or);border-radius:2px;animation:ws 1.6s ease infinite}
+@keyframes ws{0%{transform:translateY(0);opacity:1}100%{transform:translateY(12px);opacity:0}}
 
 /* TICKER */
-.ticker-wrap{background:var(--or);overflow:hidden;padding:12px 0}
-.ticker{display:flex;white-space:nowrap;animation:ticker 28s linear infinite}
+.ticker-wrap{background:var(--or);overflow:hidden;padding:11px 0}
+.ticker{display:flex;white-space:nowrap;animation:ticker 30s linear infinite}
 .ticker-item{
-  font-family:'Poppins',sans-serif;font-size:.78rem;font-weight:700;
-  color:#fff;letter-spacing:.12em;text-transform:uppercase;
-  padding:0 36px;display:flex;align-items:center;gap:12px;
+  font-family:'Poppins',sans-serif;font-size:.73rem;font-weight:700;
+  color:#fff;letter-spacing:.14em;text-transform:uppercase;
+  padding:0 40px;display:flex;align-items:center;gap:14px;
 }
-.ticker-item::after{content:'◆';font-size:.45rem;opacity:.5}
+.ticker-item::after{content:'◆';font-size:.4rem;opacity:.5}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* SECTION BASE */
 .section{padding:110px 6%}
 .sec-label{
-  font-family:'Poppins',sans-serif;font-size:.68rem;font-weight:700;
+  font-family:'Poppins',sans-serif;font-size:.66rem;font-weight:700;
   letter-spacing:.22em;text-transform:uppercase;color:var(--or);
   display:flex;align-items:center;gap:12px;margin-bottom:14px;
 }
@@ -167,10 +179,10 @@ body{font-family:'Inter',sans-serif;background:var(--br);color:var(--tx);overflo
 .sec-h2{
   font-family:'Poppins',sans-serif;
   font-size:clamp(2rem,3.8vw,3.2rem);
-  font-weight:800;line-height:1.05;text-transform:uppercase;color:var(--az);
+  font-weight:900;line-height:1.02;text-transform:uppercase;color:var(--az);
 }
 .sec-h2 em{font-style:normal;color:var(--or)}
-.sec-p{color:var(--tx2);font-size:.98rem;line-height:1.75;max-width:500px;margin-top:14px}
+.sec-p{color:var(--tx2);font-size:.96rem;line-height:1.8;max-width:500px;margin-top:14px}
 
 /* SERVIÇOS */
 #servicos{background:var(--az-mist)}
@@ -189,27 +201,24 @@ body{font-family:'Inter',sans-serif;background:var(--br);color:var(--tx);overflo
   padding:16px 18px;display:flex;align-items:center;gap:14px;box-shadow:var(--sh-md);
 }
 .serv-img-badge .bico{font-size:1.5rem}
-.serv-img-badge .btxt strong{display:block;font-family:'Poppins',sans-serif;font-weight:700;font-size:.9rem;color:var(--az)}
-.serv-img-badge .btxt span{color:var(--tx3);font-size:.78rem}
+.serv-img-badge .btxt strong{display:block;font-family:'Poppins',sans-serif;font-weight:700;font-size:.88rem;color:var(--az)}
+.serv-img-badge .btxt span{color:var(--tx3);font-size:.76rem}
 .serv-right{margin-top:40px}
 .serv-item{
   display:flex;gap:22px;padding:26px 20px;border-bottom:1px solid rgba(10,36,99,.07);
   border-radius:var(--R);transition:background .25s,padding-left .2s;cursor:default;
 }
 .serv-item:last-child{border:none}
-.serv-item:hover{background:#fff;padding-left:28px;box-shadow:var(--sh-sm)}
+.serv-item:hover{background:#fff;padding-left:30px;box-shadow:var(--sh-sm)}
 .serv-num{
-  font-family:'Poppins',sans-serif;font-size:2.5rem;font-weight:800;
-  color:rgba(10,36,99,.07);line-height:1;flex-shrink:0;width:50px;transition:color .3s;
+  font-family:'Poppins',sans-serif;font-size:2.5rem;font-weight:900;
+  color:rgba(10,36,99,.06);line-height:1;flex-shrink:0;width:50px;transition:color .3s;
 }
-.serv-item:hover .serv-num{color:rgba(255,98,0,.18)}
-.serv-icon{font-size:1.7rem;margin-bottom:7px}
-.serv-title{
-  font-family:'Poppins',sans-serif;font-size:1.05rem;font-weight:700;
-  text-transform:uppercase;letter-spacing:.04em;color:var(--az);transition:color .3s;
-}
+.serv-item:hover .serv-num{color:rgba(255,98,0,.15)}
+.serv-icon{font-size:1.6rem;margin-bottom:7px}
+.serv-title{font-family:'Poppins',sans-serif;font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--az);transition:color .3s}
 .serv-item:hover .serv-title{color:var(--or)}
-.serv-desc{color:var(--tx2);font-size:.88rem;line-height:1.65;margin-top:5px}
+.serv-desc{color:var(--tx2);font-size:.87rem;line-height:1.7;margin-top:5px}
 
 /* COMO FUNCIONA */
 #como{background:var(--br)}
@@ -224,102 +233,157 @@ body{font-family:'Inter',sans-serif;background:var(--br);color:var(--tx);overflo
 .como-step:hover{background:#fff;border-color:rgba(255,98,0,.25);transform:translateY(-6px);box-shadow:var(--sh-lg)}
 .como-step::before{
   content:attr(data-n);position:absolute;top:-18px;right:10px;
-  font-family:'Poppins',sans-serif;font-size:5rem;font-weight:800;
+  font-family:'Poppins',sans-serif;font-size:5rem;font-weight:900;
   color:rgba(10,36,99,.04);line-height:1;
 }
 .como-icon{
   width:50px;height:50px;border-radius:13px;
   background:var(--or-pale);border:1px solid rgba(255,98,0,.18);
-  display:flex;align-items:center;justify-content:center;font-size:1.45rem;
+  display:flex;align-items:center;justify-content:center;font-size:1.4rem;
   transition:background .3s;
 }
 .como-step:hover .como-icon{background:var(--or);border-color:var(--or)}
-.como-title{font-family:'Poppins',sans-serif;font-size:.92rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--az)}
+.como-title{font-family:'Poppins',sans-serif;font-size:.9rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--az)}
 .como-desc{color:var(--tx2);font-size:.82rem;line-height:1.65}
 
-/* SOBRE PARALLAX */
+/* SOBRE PARALLAX - usa frota.png */
 #sobre{position:relative;padding:0;overflow:hidden;min-height:90vh;display:flex;align-items:center}
 .sobre-bg{
   position:absolute;inset:0;z-index:0;
-  background:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1800&q=80') center/cover no-repeat;
+  background:url('./frota.png') center/cover no-repeat;
   transform:scale(1.1);will-change:transform;
 }
 .sobre-bg::after{
   content:'';position:absolute;inset:0;
-  background:linear-gradient(90deg,rgba(8,20,60,.96) 40%,rgba(10,36,99,.75) 70%,rgba(13,52,140,.5) 100%);
+  background:linear-gradient(90deg,rgba(4,10,32,.97) 32%,rgba(8,22,65,.84) 60%,rgba(13,52,140,.46) 100%);
 }
 .sobre-content{
   position:relative;z-index:2;padding:120px 6%;
   max-width:640px;display:flex;flex-direction:column;gap:26px;
 }
 .sobre-content .sec-h2{color:#fff}
-.sobre-content .sec-p{color:rgba(255,255,255,.65)}
+.sobre-content .sec-p{color:rgba(255,255,255,.58)}
 .sobre-tags{display:flex;flex-wrap:wrap;gap:10px}
 .tag{
-  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
-  color:rgba(255,255,255,.8);padding:6px 16px;border-radius:100px;
-  font-family:'Poppins',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);
+  color:rgba(255,255,255,.72);padding:6px 16px;border-radius:100px;
+  font-family:'Poppins',sans-serif;font-size:.66rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
 }
 .sobre-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .ostat{
-  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
   border-radius:14px;padding:20px 18px;transition:border-color .3s,transform .3s;
 }
 .ostat:hover{border-color:rgba(255,98,0,.4);transform:translateY(-3px)}
-.ostat-n{font-family:'Poppins',sans-serif;font-size:2.4rem;font-weight:800;color:var(--or);line-height:1}
-.ostat-l{color:rgba(255,255,255,.5);font-size:.76rem;margin-top:4px;line-height:1.4}
+.ostat-n{font-family:'Poppins',sans-serif;font-size:2.4rem;font-weight:900;color:var(--or);line-height:1}
+.ostat-l{color:rgba(255,255,255,.42);font-size:.74rem;margin-top:4px;line-height:1.4}
 
-/* FROTA */
-#frota{position:relative;padding:0;overflow:hidden;min-height:65vh;display:flex;align-items:center}
-.frota-bg{
+/* TRUCK / VEÍCULO ANIMADO */
+#veiculo-section{
+  position:relative;background:var(--az);overflow:hidden;
+  padding:100px 6%;min-height:58vh;display:flex;align-items:center;
+}
+.veiculo-bg-grid{
   position:absolute;inset:0;z-index:0;
-  background:url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1800&q=80') center/cover no-repeat;
+  background-image:linear-gradient(rgba(37,99,235,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,235,.07) 1px,transparent 1px);
+  background-size:50px 50px;
 }
-.frota-bg::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(90deg,rgba(8,20,60,.1) 0%,rgba(10,36,99,.8) 45%,rgba(8,20,60,.97) 100%);
-}
-.frota-content{
-  position:relative;z-index:2;margin-left:auto;width:52%;
-  padding:100px 6% 100px 40px;display:flex;flex-direction:column;gap:26px;
-}
-.frota-content .sec-h2{color:#fff}
-.frota-content .sec-p{color:rgba(255,255,255,.65)}
-.frota-list{list-style:none;display:flex;flex-direction:column;gap:13px}
-.frota-list li{display:flex;align-items:center;gap:14px;color:rgba(255,255,255,.85);font-size:.95rem;font-weight:500}
-.li-ico{
+.veiculo-content{position:relative;z-index:2;max-width:500px}
+.veiculo-content .sec-h2{color:#fff}
+.veiculo-content .sec-p{color:rgba(255,255,255,.52)}
+.veiculo-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin-top:22px}
+.veiculo-list li{display:flex;align-items:center;gap:14px;color:rgba(255,255,255,.78);font-size:.92rem;font-weight:500}
+.vli-ico{
   width:36px;height:36px;border-radius:9px;flex-shrink:0;
-  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);
-  display:flex;align-items:center;justify-content:center;font-size:.95rem;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);
+  display:flex;align-items:center;justify-content:center;font-size:.88rem;
 }
+.truck-scene{position:absolute;right:-20px;bottom:0;width:54%;z-index:1;pointer-events:none}
+.truck-wrap{
+  width:100%;position:relative;
+  opacity:0;transform:translateX(140px);
+  transition:opacity 1.4s cubic-bezier(.16,1,.3,1),transform 1.4s cubic-bezier(.16,1,.3,1);
+}
+.truck-wrap.in{opacity:1;transform:translateX(0)}
+.truck-svg{width:100%;height:auto;filter:drop-shadow(0 30px 80px rgba(0,0,0,.6))}
+.road-line{
+  position:absolute;bottom:2px;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,transparent,var(--or) 30%,var(--or) 70%,transparent);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform 1.6s .6s cubic-bezier(.16,1,.3,1);
+}
+.truck-wrap.in + .road-line{transform:scaleX(1)}
+
+/* wheel spin animation classes added by JS */
+.truck-svg .spin-me{transform-box:fill-box;transform-origin:center}
+.wheels-on .spin-me{animation:wSpin 1.1s linear infinite}
+@keyframes wSpin{to{transform:rotate(360deg)}}
+
+/* GPS pulse on truck */
+.gps-pulse circle.pulse{animation:gpsPulse 1.8s ease-out infinite}
+.gps-pulse circle.pulse2{animation:gpsPulse 1.8s .5s ease-out infinite}
+@keyframes gpsPulse{0%{r:4;opacity:.9}100%{r:30;opacity:0}}
+
+/* Exhaust smoke */
+.exh-smoke ellipse{animation:smokeFly 2.2s ease-out infinite}
+.exh-smoke ellipse:nth-child(2){animation-delay:.55s}
+.exh-smoke ellipse:nth-child(3){animation-delay:1.1s}
+@keyframes smokeFly{
+  0%{transform:translateY(0) scale(1);opacity:.2}
+  100%{transform:translateY(-50px) scale(2.5);opacity:0}
+}
+
+/* FROTA NUMBERS */
+#frota{background:var(--az-mist)}
+.frota-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.frota-numbers{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.fnum{
+  background:#fff;border:1px solid rgba(10,36,99,.08);
+  border-radius:16px;padding:28px 20px;
+  box-shadow:var(--sh-sm);
+  transition:transform .3s,box-shadow .3s,border-color .3s;
+}
+.fnum:hover{transform:translateY(-6px);box-shadow:var(--sh-lg);border-color:rgba(255,98,0,.22)}
+.fnum-n{font-family:'Poppins',sans-serif;font-size:2.6rem;font-weight:900;color:var(--az);line-height:1}
+.fnum-n span{color:var(--or)}
+.fnum-l{color:var(--tx2);font-size:.8rem;margin-top:8px;line-height:1.5}
+.fnum-wide{grid-column:1/-1}
 
 /* DEPOIMENTOS */
-#depoimentos{background:var(--az-mist)}
-.dep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:54px}
+#depoimentos{background:var(--az);position:relative;overflow:hidden}
+#depoimentos::before{
+  content:'';position:absolute;inset:0;
+  background-image:linear-gradient(rgba(37,99,235,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,235,.06) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+.dep-header{position:relative;z-index:2;text-align:center;margin-bottom:54px}
+.dep-header .sec-label{justify-content:center}
+.dep-header .sec-h2{color:#fff}
+.dep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;position:relative;z-index:2}
 .dep-card{
-  background:#fff;border:1px solid rgba(10,36,99,.08);
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);
   border-radius:18px;padding:30px 26px;
-  display:flex;flex-direction:column;gap:14px;
-  box-shadow:var(--sh-sm);position:relative;overflow:hidden;
-  transition:border-color .3s,transform .3s,box-shadow .3s;transform-style:preserve-3d;
+  display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden;
+  transition:border-color .3s,transform .3s,background .3s;
+  transform-style:preserve-3d;
 }
 .dep-card::before{
   content:'"';position:absolute;top:-28px;right:14px;
-  font-family:'Poppins',sans-serif;font-size:9rem;font-weight:800;
-  color:rgba(10,36,99,.04);line-height:1;
+  font-family:'Poppins',sans-serif;font-size:9rem;font-weight:900;
+  color:rgba(255,255,255,.03);line-height:1;
 }
-.dep-card:hover{border-color:rgba(255,98,0,.28);transform:translateY(-5px);box-shadow:var(--sh-lg)}
-.dep-stars{color:var(--or);font-size:.9rem;letter-spacing:3px}
-.dep-text{color:var(--tx2);font-size:.9rem;line-height:1.75;font-style:italic}
-.dep-author{display:flex;align-items:center;gap:12px;margin-top:8px;padding-top:14px;border-top:1px solid rgba(10,36,99,.07)}
+.dep-card:hover{border-color:rgba(255,98,0,.32);transform:translateY(-5px);background:rgba(255,255,255,.07)}
+.dep-stars{color:var(--or);font-size:.85rem;letter-spacing:3px}
+.dep-text{color:rgba(255,255,255,.58);font-size:.88rem;line-height:1.75;font-style:italic}
+.dep-author{display:flex;align-items:center;gap:12px;margin-top:8px;padding-top:14px;border-top:1px solid rgba(255,255,255,.07)}
 .dep-avatar{
   width:42px;height:42px;border-radius:50%;
-  background:linear-gradient(135deg,var(--az2),var(--az3));
+  background:linear-gradient(135deg,var(--or),var(--or2));
   display:flex;align-items:center;justify-content:center;
   font-family:'Poppins',sans-serif;font-size:.95rem;font-weight:700;color:#fff;flex-shrink:0;
 }
-.dep-name strong{display:block;font-weight:700;font-size:.88rem;color:var(--az)}
-.dep-name span{color:var(--tx3);font-size:.76rem}
+.dep-name strong{display:block;font-weight:700;font-size:.86rem;color:#fff}
+.dep-name span{color:rgba(255,255,255,.32);font-size:.74rem}
 
 /* CONTATO */
 #contato{background:var(--br)}
@@ -336,100 +400,78 @@ body{font-family:'Inter',sans-serif;background:var(--br);color:var(--tx);overflo
 .ccard-icon.g{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2)}
 .ccard-icon.b{background:rgba(37,99,235,.1);border:1px solid rgba(37,99,235,.18)}
 .ccard-icon.p{background:var(--or-pale);border:1px solid rgba(255,98,0,.18)}
-.ccard-text strong{display:block;font-weight:700;font-size:.92rem;color:var(--az)}
-.ccard-text span{color:var(--tx3);font-size:.8rem}
-.map-box{
-  border-radius:15px;border:1px solid rgba(37,99,235,.12);
-  aspect-ratio:16/7;background:linear-gradient(135deg,var(--az-soft),var(--az-pale));
-  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;
-  margin-top:18px;box-shadow:var(--sh-sm);
-}
+.ccard-text strong{display:block;font-weight:700;font-size:.9rem;color:var(--az)}
+.ccard-text span{color:var(--tx3);font-size:.78rem}
 .cform{
   background:var(--az-mist);border:1px solid rgba(37,99,235,.12);
   border-radius:22px;padding:42px 38px;
   display:flex;flex-direction:column;gap:20px;
   position:relative;overflow:hidden;box-shadow:var(--sh-md);
 }
-.cform::before{
-  content:'';position:absolute;top:-70px;right:-70px;width:200px;height:200px;border-radius:50%;
-  background:radial-gradient(circle,rgba(255,98,0,.06),transparent 70%);pointer-events:none;
-}
-.cform h3{font-family:'Poppins',sans-serif;font-size:1.7rem;font-weight:800;text-transform:uppercase;color:var(--az)}
+.cform h3{font-family:'Poppins',sans-serif;font-size:1.6rem;font-weight:900;text-transform:uppercase;color:var(--az)}
 .frow{display:flex;flex-direction:column;gap:6px}
-.frow label{font-size:.68rem;font-weight:700;color:var(--tx3);letter-spacing:.12em;text-transform:uppercase}
+.frow label{font-size:.66rem;font-weight:700;color:var(--tx3);letter-spacing:.12em;text-transform:uppercase}
 .frow input,.frow select,.frow textarea{
   background:#fff;border:1.5px solid rgba(37,99,235,.16);
   border-radius:10px;padding:13px 16px;
-  color:var(--tx);font-family:'Inter',sans-serif;font-size:.93rem;
+  color:var(--tx);font-family:'Inter',sans-serif;font-size:.92rem;
   outline:none;transition:border-color .25s,box-shadow .25s;width:100%;
 }
-.frow input::placeholder,.frow textarea::placeholder{color:var(--tx3)}
 .frow input:focus,.frow select:focus,.frow textarea:focus{border-color:var(--or);box-shadow:0 0 0 3px rgba(255,98,0,.1)}
 .frow textarea{resize:vertical;min-height:110px}
-.frow select option{background:#fff;color:var(--tx)}
 .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
 .fsub{
   background:var(--or);color:#fff;
-  font-family:'Poppins',sans-serif;font-weight:700;font-size:.92rem;
+  font-family:'Poppins',sans-serif;font-weight:700;font-size:.9rem;
   letter-spacing:.06em;text-transform:uppercase;
   border:none;border-radius:100px;padding:15px;cursor:pointer;width:100%;
-  box-shadow:0 4px 20px rgba(255,98,0,.32);
-  transition:background .2s,transform .15s,box-shadow .2s;
+  box-shadow:0 4px 20px rgba(255,98,0,.32);transition:background .2s,transform .15s;
 }
-.fsub:hover{background:var(--or2);transform:translateY(-2px);box-shadow:0 8px 28px rgba(255,98,0,.48)}
+.fsub:hover{background:var(--or2);transform:translateY(-2px)}
 
 /* FOOTER */
-footer{background:var(--az);border-top:1px solid rgba(255,255,255,.07);padding:68px 6% 34px}
-.foot-inner{
-  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;
-  padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.07);
-}
-.foot-brand .logo img{height:44px;margin-bottom:18px}
-.foot-brand p{color:rgba(255,255,255,.45);font-size:.85rem;line-height:1.7;max-width:280px}
+footer{background:var(--az);border-top:1px solid rgba(255,255,255,.06);padding:68px 6% 34px}
+.foot-inner{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.07)}
+.foot-logo{font-family:'Poppins',sans-serif;font-size:1.15rem;font-weight:900;color:#fff;margin-bottom:16px}
+.foot-logo img {height:52px;}
+.foot-logo span{color:var(--or)}
+.foot-brand p{color:rgba(255,255,255,.38);font-size:.84rem;line-height:1.7;max-width:280px}
 .foot-socials{display:flex;gap:10px;margin-top:18px}
 .foot-social{
   width:38px;height:38px;border-radius:9px;
-  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
-  display:flex;align-items:center;justify-content:center;font-size:.95rem;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+  display:flex;align-items:center;justify-content:center;font-size:.9rem;
   text-decoration:none;transition:background .2s,border-color .2s,transform .2s;
 }
 .foot-social:hover{background:rgba(255,98,0,.2);border-color:rgba(255,98,0,.4);transform:translateY(-3px)}
-.foot-col h4{
-  font-family:'Poppins',sans-serif;font-size:.68rem;font-weight:700;
-  letter-spacing:.18em;text-transform:uppercase;color:var(--or);margin-bottom:18px;
-}
+.foot-col h4{font-family:'Poppins',sans-serif;font-size:.64rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--or);margin-bottom:18px}
 .foot-col ul{list-style:none;display:flex;flex-direction:column;gap:11px}
-.foot-col ul li a{
-  color:rgba(255,255,255,.42);text-decoration:none;font-size:.85rem;
-  transition:color .2s;display:flex;align-items:center;gap:6px;
-}
+.foot-col ul li a{color:rgba(255,255,255,.36);text-decoration:none;font-size:.84rem;transition:color .2s;display:flex;align-items:center;gap:6px}
 .foot-col ul li a::before{content:'›';color:var(--or);font-size:1rem}
 .foot-col ul li a:hover{color:#fff}
-.foot-bottom{
-  padding-top:26px;display:flex;justify-content:space-between;align-items:center;
-  color:rgba(255,255,255,.22);font-size:.76rem;flex-wrap:wrap;gap:10px;
-}
+.foot-bottom{padding-top:26px;display:flex;justify-content:space-between;align-items:center;color:rgba(255,255,255,.2);font-size:.74rem;flex-wrap:wrap;gap:10px}
 
 /* WPP FAB */
 .wpp-fab{
   position:fixed;bottom:28px;right:28px;z-index:998;
   width:62px;height:62px;border-radius:50%;background:#25d366;
-  display:flex;align-items:center;justify-content:center;font-size:1.85rem;text-decoration:none;
-  box-shadow:0 4px 24px rgba(37,211,102,.45);transition:transform .2s,box-shadow .2s;
+  display:flex;align-items:center;justify-content:center;font-size:1.8rem;text-decoration:none;
+  box-shadow:0 4px 24px rgba(37,211,102,.45);transition:transform .2s;
 }
-.wpp-fab:hover{transform:scale(1.12) rotate(-8deg);box-shadow:0 8px 36px rgba(37,211,102,.6)}
-.wpp-pulse{position:absolute;width:100%;height:100%;border-radius:50%;background:rgba(37,211,102,.3);animation:wppRipple 2s ease infinite}
-@keyframes wppRipple{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.7);opacity:0}}
+.wpp-fab:hover{transform:scale(1.12) rotate(-8deg)}
+.wpp-pulse{position:absolute;width:100%;height:100%;border-radius:50%;background:rgba(37,211,102,.3);animation:wppR 2s ease infinite}
+@keyframes wppR{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.7);opacity:0}}
 
 /* DIVIDER */
 .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(37,99,235,.18) 30%,rgba(255,98,0,.2) 70%,transparent)}
 
-/* GSAP pre-states */
-.gs-up{opacity:0;transform:translateY(44px)}
-.gs-left{opacity:0;transform:translateX(-52px)}
-.gs-right{opacity:0;transform:translateX(52px)}
-.gs-scale{opacity:0;transform:scale(.9)}
-.gs-fade{opacity:0}
+/* SCROLL ANIM */
+.gs-up{opacity:0;transform:translateY(44px);transition:opacity .75s ease,transform .75s ease}
+.gs-left{opacity:0;transform:translateX(-52px);transition:opacity .78s ease,transform .78s ease}
+.gs-right{opacity:0;transform:translateX(52px);transition:opacity .78s ease,transform .78s ease}
+.gs-scale{opacity:0;transform:scale(.9);transition:opacity .8s ease,transform .8s ease}
+.anim-in.gs-up,.anim-in.gs-left,.anim-in.gs-right,.anim-in.gs-scale{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
 
 /* RESPONSIVE */
 @media(max-width:1100px){
@@ -440,31 +482,158 @@ footer{background:var(--az);border-top:1px solid rgba(255,255,255,.07);padding:6
   .dep-grid{grid-template-columns:1fr 1fr}
   .contato-layout{grid-template-columns:1fr;gap:48px}
   .foot-inner{grid-template-columns:1fr 1fr;gap:36px}
-  .frota-content{width:100%;padding:80px 6%}
+  .frota-grid{grid-template-columns:1fr}
+  .truck-scene{width:65%}
 }
 @media(max-width:768px){
   .nav-links,.nav-wpp{display:none}
   .dep-grid{grid-template-columns:1fr}
   .como-grid{grid-template-columns:1fr}
   .fgrid{grid-template-columns:1fr}
-  .hero-h1{font-size:clamp(2.5rem,10vw,3.8rem)}
   .hero-stats{flex-direction:column;width:100%}
-  .hstat{border-right:none;border-bottom:1px solid rgba(255,255,255,.1)}
+  .hstat{border-right:none;border-bottom:1px solid rgba(255,255,255,.08)}
   .hstat:last-child{border:none}
   .sobre-stats{grid-template-columns:1fr}
   .foot-inner{grid-template-columns:1fr;gap:28px}
-  .frota-bg::after{background:rgba(8,20,60,.92)}
+  .truck-scene{display:none}
+  .frota-numbers{grid-template-columns:1fr}
+}
+
+.truck-scene {
+    position: absolute;
+    right: -100px; /* Começa um pouco fora da tela */
+    bottom: 20px;
+    width: 60%;
+    z-index: 1;
+    pointer-events: none;
+    overflow: visible;
+}
+
+.truck-img-real {
+    width: 100%;
+    height: auto;
+    /* Filtro para dar uma leve profundidade e combinar com o tema azul */
+    filter: drop-shadow(0 20px 50px rgba(0,0,0,0.5));
+}
+
+/* Animação de entrada vinda da direita */
+.truck-wrap {
+    transform: translateX(100%); /* Começa totalmente fora */
+    opacity: 0;
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
+}
+
+.truck-wrap.in {
+    transform: translateX(0); /* Entra na posição final */
+    opacity: 1;
+}
+
+/* Efeito de pulso de GPS sobre a imagem */
+.gps-dot-overlay {
+    position: absolute;
+    top: 25%; /* Ajuste conforme a posição da cabine na imagem escolhida */
+    right: 15%;
+    width: 20px;
+    height: 20px;
+}
+
+.dot-main {
+    width: 10px;
+    height: 10px;
+    background: var(--or);
+    border-radius: 50%;
+    position: absolute;
+    z-index: 2;
+}
+
+.dot-pulse {
+    width: 10px;
+    height: 10px;
+    background: var(--or);
+    border-radius: 50%;
+    position: absolute;
+    animation: gpsPulseReal 2s infinite;
+}
+
+@keyframes gpsPulseReal {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(4); opacity: 0; }
+}
+
+/* Container do Alvo */
+.target-container {
+  position: relative;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+}
+
+.target-wrap {
+  position: absolute;
+  left: 0;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.15; /* Fica no fundo */
+  z-index: 0;
+}
+
+.target-circle {
+  position: absolute;
+  border: 2px solid var(--az);
+  border-radius: 50%;
+  transition: all 0.5s ease;
+}
+
+.c1 { width: 100%; height: 100%; }
+.c2 { width: 66%; height: 66%; }
+.c3 { width: 33%; height: 33%; }
+
+.target-bullseye {
+  width: 20px;
+  height: 20px;
+  background: var(--or);
+  border-radius: 50%;
+  box-shadow: 0 0 20px var(--or);
+}
+
+/* A Flecha */
+.arrow-precision {
+  position: absolute;
+  left: -200px; /* Começa fora da tela à esquerda */
+  width: 150px;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.target-text {
+  position: relative;
+  z-index: 2;
+  padding-left: 20px;
+}
+
+/* Impacto no Alvo */
+.hit .target-circle {
+  border-color: var(--or);
+  transform: scale(1.05);
+}
+
+.frota-numbers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
 }
 </style>
 </head>
+
 <body>
 
 <!-- NAV -->
 <nav id="navbar">
-  <div class="nav-logo">
-    <img src="rastreadores-azul.png" alt="Galeazzi Rastreadores"
-         onerror="this.outerHTML='<span style=\'font-family:Poppins,sans-serif;font-size:1.3rem;font-weight:800;color:#fff\'>GALEAZZI <span style=\'color:#ff6200\'>RASTREADORES</span></span>'">
-  </div>
+  <div class="nav-logo"><img src="./rastreadores-azul.png" alt=""></div>
   <ul class="nav-links">
     <li><a href="#servicos">Serviços</a></li>
     <li><a href="#como">Como funciona</a></li>
@@ -475,24 +644,46 @@ footer{background:var(--az);border-top:1px solid rgba(255,255,255,.07);padding:6
   <a href="https://wa.me/5546999999999" class="nav-wpp" target="_blank">💬 Orçamento grátis</a>
 </nav>
 
-<!-- HERO -->
+<!-- HERO COM VÍDEO -->
 <section id="hero">
-  <div class="hero-img"></div>
-  <div class="hero-scanline"></div>
+  <div class="hero-bg-fallback"></div>
+  <div class="hero-video-wrap">
+    <!--
+      INSTRUÇÃO: coloque seu arquivo de vídeo na mesma pasta que este HTML
+      e nomeie-o "hero.mp4" — ou ajuste o src abaixo.
+      O vídeo toca mudo, em loop, sem controles e sem poder pausar.
+    -->
+    <video
+      id="heroVideo"
+      autoplay
+      muted
+      loop
+      playsinline
+      disablePictureInPicture
+      controlslist="nodownload nofullscreen noremoteplayback"
+      oncontextmenu="return false;"
+      tabindex="-1"
+    >
+      <source src="hero.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero-scanlines"></div>
+  <div class="hero-grid-overlay"></div>
+
   <div class="hero-content">
-    <div class="hero-eyebrow gs-fade"><span class="dot"></span>&nbsp;Pato Branco – PR &nbsp;·&nbsp; Desde 2012</div>
-    <h1 class="hero-h1 gs-up">
+    <div class="hero-eyebrow"><span class="dot"></span>&nbsp;Pato Branco – PR &nbsp;·&nbsp; Desde 2012</div>
+    <h1 class="hero-h1">
       Rastreamento<br>
       que você<br>
       <span class="gold">pode confiar.</span>
     </h1>
-    <p class="hero-sub gs-up">Instalação profissional de rastreadores para carros, motos, caminhões e frotas. Monitoramento 24 horas, bloqueio remoto e tecnologia de ponta.</p>
-    <div class="hero-ctas gs-up">
+    <p class="hero-sub">Instalação profissional de rastreadores para carros, motos, caminhões e frotas. Monitoramento 24 horas, bloqueio remoto e tecnologia de ponta.</p>
+    <div class="hero-ctas">
       <a href="https://wa.me/5546999999999" class="btn-gold" target="_blank">💬 Falar no WhatsApp</a>
       <a href="#servicos" class="btn-ghost">Ver serviços ↓</a>
     </div>
-    <div class="hero-stats gs-scale">
-      <div class="hstat"><div class="hstat-n">+12<span>anos</span></div><div class="hstat-l">de experiência</div></div>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-n">+44<span>anos</span></div><div class="hstat-l">de experiência</div></div>
       <div class="hstat"><div class="hstat-n">+5<span>mil</span></div><div class="hstat-l">clientes atendidos</div></div>
       <div class="hstat"><div class="hstat-n">24<span>h</span></div><div class="hstat-l">monitoramento</div></div>
     </div>
@@ -539,10 +730,10 @@ footer{background:var(--az);border-top:1px solid rgba(255,255,255,.07);padding:6
         <p class="sec-p">Tecnologia avançada instalada por especialistas para proteger o que é seu, onde quer que esteja.</p>
       </div>
       <div class="serv-right">
-        <div class="serv-item gs-up"><div class="serv-num">01</div><div><div class="serv-icon">🚗</div><div class="serv-title">Rastreamento Veicular</div><p class="serv-desc">GPS em tempo real para carros e motos. Acompanhe a localização pelo app a qualquer hora, de qualquer lugar.</p></div></div>
-        <div class="serv-item gs-up"><div class="serv-num">02</div><div><div class="serv-icon">🚛</div><div class="serv-title">Gestão de Frotas</div><p class="serv-desc">Controle total de caminhões e veículos comerciais. Relatórios de percurso, velocidade e jornada do motorista.</p></div></div>
-        <div class="serv-item gs-up"><div class="serv-num">03</div><div><div class="serv-icon">🔒</div><div class="serv-title">Bloqueio Remoto</div><p class="serv-desc">Em caso de roubo, bloqueie o veículo à distância pelo app ou acione nossa central. Ação imediata, 24 horas.</p></div></div>
-        <div class="serv-item gs-up"><div class="serv-num">04</div><div><div class="serv-icon">📡</div><div class="serv-title">Monitoramento</div><p class="serv-desc">Alertas automáticos de movimentação suspeita e saída de cerca virtual.</p></div></div>
+        <div class="serv-item gs-up d1"><div class="serv-num">01</div><div><div class="serv-icon">🚗</div><div class="serv-title">Rastreamento Veicular</div><p class="serv-desc">GPS em tempo real para carros e motos. Acompanhe a localização pelo app a qualquer hora.</p></div></div>
+        <div class="serv-item gs-up d2"><div class="serv-num">02</div><div><div class="serv-icon">🚛</div><div class="serv-title">Gestão de Frotas</div><p class="serv-desc">Controle total de caminhões e veículos comerciais. Relatórios de percurso, velocidade e jornada.</p></div></div>
+        <div class="serv-item gs-up d3"><div class="serv-num">03</div><div><div class="serv-icon">🔒</div><div class="serv-title">Bloqueio Remoto</div><p class="serv-desc">Em caso de roubo, bloqueie o veículo à distância pelo app ou acione nossa central 24h.</p></div></div>
+        <div class="serv-item gs-up d4"><div class="serv-num">04</div><div><div class="serv-icon">📡</div><div class="serv-title">Monitoramento</div><p class="serv-desc">Alertas automáticos de movimentação suspeita e saída de cerca virtual configurada por você.</p></div></div>
       </div>
     </div>
   </div>
@@ -557,82 +748,137 @@ footer{background:var(--az);border-top:1px solid rgba(255,255,255,.07);padding:6
       <div class="sec-label">Como funciona</div>
       <h2 class="sec-h2">Do contato à <em>proteção total</em></h2>
     </div>
-    <p class="sec-p gs-up" style="margin:0">Simples, rápido e sem complicação. Em poucos passos seu veículo já está protegido.</p>
+    <p class="sec-p gs-up d2" style="margin:0">Simples, rápido e sem complicação. Em poucos passos seu veículo já está protegido.</p>
   </div>
   <div class="como-grid">
-    <div class="como-step gs-up" data-n="01"><div class="como-icon">💬</div><div class="como-title">Fale Conosco</div><p class="como-desc">Entre em contato pelo WhatsApp ou telefone. Nosso time responde na hora e orienta sobre a melhor solução.</p></div>
-    <div class="como-step gs-up" data-n="02"><div class="como-icon">📋</div><div class="como-title">Escolha o Plano</div><p class="como-desc">Apresentamos as opções ideais para o seu veículo ou frota. Planos para pessoa física e empresas.</p></div>
-    <div class="como-step gs-up" data-n="03"><div class="como-icon">🔧</div><div class="como-title">Instalação</div><p class="como-desc">Nossos técnicos vão até você ou você vem até nossa loja em Pato Branco. Instalação rápida e garantida.</p></div>
-    <div class="como-step gs-up" data-n="04"><div class="como-icon">🛡️</div><div class="como-title">Protegido!</div><p class="como-desc">Pronto! Seu veículo está monitorado em tempo real. Acompanhe pelo aplicativo e durma tranquilo.</p></div>
+    <div class="como-step gs-up d1" data-n="01"><div class="como-icon">💬</div><div class="como-title">Fale Conosco</div><p class="como-desc">Entre em contato pelo WhatsApp. Nosso time responde na hora e orienta sobre a melhor solução.</p></div>
+    <div class="como-step gs-up d2" data-n="02"><div class="como-icon">📋</div><div class="como-title">Escolha o Plano</div><p class="como-desc">Apresentamos as opções ideais para seu veículo ou frota. Planos para pessoa física e empresas.</p></div>
+    <div class="como-step gs-up d3" data-n="03"><div class="como-icon">🔧</div><div class="como-title">Instalação</div><p class="como-desc">Nossos técnicos vão até você ou você vem até nossa loja em Pato Branco. Rápida e garantida.</p></div>
+    <div class="como-step gs-up d4" data-n="04"><div class="como-icon">🛡️</div><div class="como-title">Protegido!</div><p class="como-desc">Pronto! Seu veículo está monitorado em tempo real. Acompanhe pelo app e durma tranquilo.</p></div>
   </div>
 </section>
 
-<!-- SOBRE PARALLAX -->
+<!-- SOBRE – usa frota.png -->
 <section id="sobre">
   <div class="sobre-bg" id="sobreBg"></div>
   <div class="sobre-content">
     <div class="gs-up">
       <div class="sec-label">Quem somos</div>
-      <h2 class="sec-h2">Referência em<br>Pato Branco <em>há +12 anos</em></h2>
-      <p class="sec-p">A Galeazzi nasceu do compromisso de proteger o patrimônio dos moradores e empresas do Sudoeste do Paraná. São mais de uma década levando tecnologia com atendimento próximo e humano.</p>
+      <h2 class="sec-h2">Referência em<br>Pato Branco <em>há +44 anos</em></h2>
+      <p class="sec-p">A Galeazzi nasceu do compromisso de proteger o patrimônio dos moradores e empresas do Sudoeste do Paraná. Mais de uma década de tecnologia com atendimento próximo e humano.</p>
     </div>
-    <div class="sobre-tags gs-up">
-      <span class="tag">Pato Branco – PR</span><span class="tag">Desde 2012</span>
-      <span class="tag">Técnicos certificados</span><span class="tag">Suporte local</span>
+    <div class="sobre-tags gs-up d1">
+      <span class="tag">Pato Branco – PR</span>
+      <span class="tag">Desde 1982</span>
+      <span class="tag">Técnicos certificados</span>
+      <span class="tag">Suporte local</span>
     </div>
-    <div class="sobre-stats gs-scale">
-      <div class="ostat"><div class="ostat-n" data-target="12" data-suffix="+">12+</div><div class="ostat-l">Anos de mercado no Sudoeste do Paraná</div></div>
-      <div class="ostat"><div class="ostat-n" data-target="5000" data-suffix="+">5000+</div><div class="ostat-l">Clientes protegidos na região</div></div>
-      <div class="ostat"><div class="ostat-n">24h</div><div class="ostat-l">Acompanhe seu veículo a hora que quiser</div></div>
+    <div class="sobre-stats gs-scale d2">
+      <div class="ostat"><div class="ostat-n">44<span style="font-size:1.5rem;color:var(--or)">+</span></div><div class="ostat-l">Anos de mercado no Sudoeste do PR</div></div>
+      <div class="ostat"><div class="ostat-n">5mil<span style="font-size:1.5rem;color:var(--or)">+</span></div><div class="ostat-l">Clientes protegidos na região</div></div>
+      <div class="ostat"><div class="ostat-n">24h</div><div class="ostat-l">Seu veículo monitorado a qualquer hora</div></div>
       <div class="ostat"><div class="ostat-n">100%</div><div class="ostat-l">Compromissados com sua segurança</div></div>
     </div>
-    <div class="gs-up"><a href="#contato" class="btn-gold" style="display:inline-flex;width:fit-content">Fale com a gente →</a></div>
+    <div class="gs-up d3">
+      <a href="#contato" class="btn-gold" style="display:inline-flex;width:fit-content">Fale com a gente →</a>
+    </div>
+  </div>
+</section>
+
+<!-- TRUCK ANIMATION -->
+<section id="veiculo-section">
+  <div class="veiculo-bg-grid"></div>
+  <div class="veiculo-content">
+    <div class="gs-up">
+      <div class="sec-label">Frota</div>
+      <h2 class="sec-h2" style="color:#fff">Proteja sua<br>operação <em>inteira</em></h2>
+      <p class="sec-p">De um caminhão à sua frota completa. A Galeazzi tem a solução certa para cada tipo de veículo.</p>
+    </div>
+    <ul class="veiculo-list gs-up d2">
+      <li><div class="vli-ico">📍</div>Localização em tempo real de todos os veículos</li>
+      <li><div class="vli-ico">⏰</div>Histórico completo de rotas e horários</li>
+      <li><div class="vli-ico">🔔</div>Alertas de área e excesso de velocidade</li>
+      <li><div class="vli-ico">👤</div>Identificação de motorista</li>
+      <li><div class="vli-ico">📊</div>Relatórios detalhados de desempenho</li>
+      <li><div class="vli-ico">🌐</div>App disponível para Android e iOS</li>
+    </ul>
+    <div class="gs-up d3" style="margin-top:28px">
+      <a href="https://wa.me/5546999999999" class="btn-gold" target="_blank">Quero proteger minha frota →</a>
+    </div>
+  </div>
+
+  <!-- Truck IMG animado -->
+  <div class="truck-scene">
+  <div class="truck-wrap" id="truckWrap">
+    <img src="./img-caminhao-home.png" 
+         alt="Caminhão Galeazzi" 
+         class="truck-img-real">
+    
+    <div class="gps-dot-overlay">
+       <div class="dot-main"></div>
+       <div class="dot-pulse"></div>
+    </div>
+  </div>
+  <div class="road-line" id="roadLine"></div>
+</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FROTA NÚMEROS -->
+<section id="frota" class="section">
+  <div class="frota-grid">
+    <div class="target-container">
+      <div class="target-wrap">
+        <div class="target-circle c1"></div>
+        <div class="target-circle c2"></div>
+        <div class="target-circle c3"></div>
+        <div class="target-bullseye"></div>
+      </div>
+      <div class="arrow-precision" id="arrow">
+        <svg viewBox="0 0 100 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 5H95M95 5L90 1M95 5L90 9" stroke="#ff6200" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      
+      <div class="target-text">
+        <div class="sec-label">Frota & Tecnologia</div>
+        <h2 class="sec-h2">Controle sua frota<br>com <em>precisão</em></h2>
+        <p class="sec-p">Relatórios, alertas e gestão completa. Reduza custos e aumente a segurança.</p>
+        <div style="margin-top:28px">
+          <a href="https://wa.me/5546999999999" class="btn-gold" target="_blank" style="display:inline-flex">Solicitar demonstração →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="frota-numbers">
+      <div class="fnum tracker-animate-item"><div class="fnum-n">24<span>h</span></div><div class="fnum-l">Monitoramento contínuo</div></div>
+      <div class="fnum tracker-animate-item"><div class="fnum-n">+5<span>mil</span></div><div class="fnum-l">Clientes protegidos</div></div>
+      <div class="fnum fnum-wide tracker-animate-item"><div class="fnum-n">44<span>+</span> anos</div><div class="fnum-l">de experiência</div></div>
+    </div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- FROTA -->
-<section id="frota">
-  <div class="frota-bg"></div>
-  <div class="frota-content">
-    <div class="gs-right">
-      <div class="sec-label">Frota</div>
-      <h2 class="sec-h2">Proteja sua<br>operação <em>inteira</em></h2>
-      <p class="sec-p">De um caminhão à sua frota completa. A Galeazzi tem a solução certa para cada tipo de veículo e negócio.</p>
-    </div>
-    <ul class="frota-list gs-right">
-      <li><div class="li-ico">📍</div>Localização em tempo real de todos os veículos</li>
-      <li><div class="li-ico">⏰</div>Histórico completo de rotas e horários</li>
-      <li><div class="li-ico">🔔</div>Alertas de saída de área e excesso de velocidade</li>
-      <li><div class="li-ico">👤</div>Identificação de motorista</li>
-      <li><div class="li-ico">📊</div>Relatórios detalhados de desempenho</li>
-      <li><div class="li-ico">🌐</div>App disponível para Android e iOS</li>
-    </ul>
-    <div class="gs-right">
-      <a href="https://wa.me/5546999999999" class="btn-gold" target="_blank">Quero proteger minha frota →</a>
-    </div>
-  </div>
-</section>
-
 <!-- DEPOIMENTOS -->
 <section id="depoimentos" class="section">
-  <div class="gs-up" style="text-align:center">
-    <div class="sec-label" style="justify-content:center">O que dizem nossos clientes</div>
-    <h2 class="sec-h2" style="text-align:center">Quem usa, <em>recomenda</em></h2>
+  <div class="dep-header gs-up">
+    <div class="sec-label">O que dizem nossos clientes</div>
+    <h2 class="sec-h2">Quem usa, <em>recomenda</em></h2>
   </div>
   <div class="dep-grid">
-    <div class="dep-card gs-up">
+    <div class="dep-card gs-up d1">
       <div class="dep-stars">★★★★★</div>
       <p class="dep-text">"Instalei o rastreador na minha camionete e fiquei impressionado com a qualidade do serviço. O técnico foi super profissional e o app funciona perfeitamente. Muito mais tranquilo agora!"</p>
       <div class="dep-author"><div class="dep-avatar">JC</div><div class="dep-name"><strong>João Carlos Oliveira</strong><span>Empresário — Pato Branco</span></div></div>
     </div>
-    <div class="dep-card gs-up">
+    <div class="dep-card gs-up d2">
       <div class="dep-stars">★★★★★</div>
       <p class="dep-text">"Tenho três caminhões rastreados pela Galeazzi. O suporte é excelente, sempre atendem rápido quando preciso. Já recuperei uma carga graças ao sistema deles. Recomendo muito!"</p>
       <div class="dep-author"><div class="dep-avatar">MR</div><div class="dep-name"><strong>Marcos Ribeiro</strong><span>Transportador — Francisco Beltrão</span></div></div>
     </div>
-    <div class="dep-card gs-up">
+    <div class="dep-card gs-up d3">
       <div class="dep-stars">★★★★★</div>
       <p class="dep-text">"Coloquei rastreador na moto e no carro. O pessoal da Galeazzi entende do assunto da região, o sinal funciona até nas fazendas mais afastadas. Serviço de primeira!"</p>
       <div class="dep-author"><div class="dep-avatar">AS</div><div class="dep-name"><strong>Antônio Sartori</strong><span>Produtor Rural — Região de Pato Branco</span></div></div>
@@ -640,7 +886,7 @@ footer{background:var(--az);border-top:1px solid rgba(255,255,255,.07);padding:6
   </div>
 </section>
 
-<div class="divider"></div>
+<div class="divider" style="background:rgba(255,255,255,.06)"></div>
 
 <!-- CONTATO -->
 <section id="contato" class="section">
@@ -652,14 +898,18 @@ footer{background:var(--az);border-top:1px solid rgba(255,255,255,.07);padding:6
         <p class="sec-p">Atendemos em Pato Branco e toda a região do Sudoeste do Paraná. Resposta rápida, sem enrolação.</p>
       </div>
       <div class="cinfo-cards">
-        <a href="https://wa.me/5546999999999" class="ccard gs-left" target="_blank"><div class="ccard-icon g">💬</div><div class="ccard-text"><strong>WhatsApp</strong><span>(46) 9 9999-9999 — Resposta na hora</span></div></a>
-        <a href="tel:+554699999999" class="ccard gs-left"><div class="ccard-icon b">📞</div><div class="ccard-text"><strong>Telefone</strong><span>(46) 9999-9999</span></div></a>
-        <a href="#" class="ccard gs-left"><div class="ccard-icon p">📍</div><div class="ccard-text"><strong>Localização</strong><span>Pato Branco – PR · Sudoeste do Paraná</span></div></a>
-      </div>
-      <div class="map-box gs-up">
-        <span style="font-size:2.4rem">📍</span>
-        <span style="font-family:'Poppins',sans-serif;font-size:.95rem;color:var(--or);letter-spacing:.1em;text-transform:uppercase;font-weight:700">Pato Branco – PR</span>
-        <span style="color:var(--tx3);font-size:.8rem">Sudoeste do Paraná</span>
+        <a href="https://wa.me/5546999999999" class="ccard gs-left d1" target="_blank">
+          <div class="ccard-icon g">💬</div>
+          <div class="ccard-text"><strong>WhatsApp</strong><span>(46) 9 9999-9999 — Resposta na hora</span></div>
+        </a>
+        <a href="tel:+554699999999" class="ccard gs-left d2">
+          <div class="ccard-icon b">📞</div>
+          <div class="ccard-text"><strong>Telefone</strong><span>(46) 9999-9999</span></div>
+        </a>
+        <a href="#" class="ccard gs-left d3">
+          <div class="ccard-icon p">📍</div>
+          <div class="ccard-text"><strong>Localização</strong><span>Pato Branco – PR · Sudoeste do Paraná</span></div>
+        </a>
       </div>
     </div>
     <div class="cform gs-right">
@@ -671,13 +921,13 @@ footer{background:var(--az);border-top:1px solid rgba(255,255,255,.07);padding:6
       <div class="frow"><label>Tipo de veículo</label>
         <select id="f-vei">
           <option value="">Selecione...</option>
-          <option>Carro</option><option>Moto</option><option>Caminhão / Van</option>
-          <option>Frota (múltiplos veículos)</option><option>Outro</option>
+          <option>Carro</option><option>Moto</option>
+          <option>Caminhão / Van</option><option>Frota (múltiplos veículos)</option><option>Outro</option>
         </select>
       </div>
       <div class="frow"><label>Mensagem</label><textarea id="f-msg" placeholder="Conte mais sobre o que você precisa..."></textarea></div>
       <button class="fsub" onclick="enviarWpp()">💬 Enviar pelo WhatsApp</button>
-      <p style="text-align:center;color:var(--tx3);font-size:.76rem">Resposta em até 5 minutos no horário comercial</p>
+      <p style="text-align:center;color:var(--tx3);font-size:.74rem">Resposta em até 5 minutos no horário comercial</p>
     </div>
   </div>
 </section>
@@ -686,20 +936,31 @@ footer{background:var(--az);border-top:1px solid rgba(255,255,255,.07);padding:6
 <footer>
   <div class="foot-inner">
     <div class="foot-brand">
-      <div class="logo">
-        <img src="rastreadores-azul.png" alt="Galeazzi"
-             onerror="this.outerHTML='<span style=\'font-family:Poppins,sans-serif;font-size:1.1rem;font-weight:800;color:#fff\'>GALEAZZI <span style=\'color:#ff6200\'>RASTREADORES</span></span>'">
-      </div>
-      <p>Mais de 12 anos protegendo o patrimônio de pessoas e empresas em Pato Branco e toda a região do Sudoeste do Paraná.</p>
+      <div class="foot-logo"><img src="./rastreadores-azul.png" alt=""></div>
+      <p>Mais de 44 anos protegendo o patrimônio de pessoas e empresas em Pato Branco e toda a região do Sudoeste do Paraná.</p>
       <div class="foot-socials">
         <a href="#" class="foot-social">📸</a>
         <a href="#" class="foot-social">👤</a>
         <a href="https://wa.me/5546999999999" class="foot-social" target="_blank">💬</a>
       </div>
     </div>
-    <div class="foot-col"><h4>Serviços</h4><ul><li><a href="#servicos">Rastreamento Veicular</a></li><li><a href="#servicos">Gestão de Frotas</a></li><li><a href="#servicos">Bloqueio Remoto</a></li><li><a href="#servicos">Monitoramento 24h</a></li></ul></div>
-    <div class="foot-col"><h4>Empresa</h4><ul><li><a href="#sobre">Sobre nós</a></li><li><a href="#como">Como funciona</a></li><li><a href="#depoimentos">Depoimentos</a></li><li><a href="#contato">Contato</a></li></ul></div>
-    <div class="foot-col"><h4>Contato</h4><ul><li><a href="https://wa.me/5546999999999" target="_blank">(46) 9 9999-9999</a></li><li><a href="tel:+554699999999">(46) 9999-9999</a></li><li><a href="#">Pato Branco – PR</a></li></ul></div>
+    <div class="foot-col"><h4>Serviços</h4><ul>
+      <li><a href="#servicos">Rastreamento Veicular</a></li>
+      <li><a href="#servicos">Gestão de Frotas</a></li>
+      <li><a href="#servicos">Bloqueio Remoto</a></li>
+      <li><a href="#servicos">Monitoramento 24h</a></li>
+    </ul></div>
+    <div class="foot-col"><h4>Empresa</h4><ul>
+      <li><a href="#sobre">Sobre nós</a></li>
+      <li><a href="#como">Como funciona</a></li>
+      <li><a href="#depoimentos">Depoimentos</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul></div>
+    <div class="foot-col"><h4>Contato</h4><ul>
+      <li><a href="https://wa.me/5546999999999" target="_blank">(46) 9 9999-9999</a></li>
+      <li><a href="tel:+554699999999">(46) 9999-9999</a></li>
+      <li><a href="#">Pato Branco – PR</a></li>
+    </ul></div>
   </div>
   <div class="foot-bottom">
     <span>© 2025 Galeazzi Rastreadores — Pato Branco, PR. Todos os direitos reservados.</span>
@@ -711,117 +972,119 @@ footer{background:var(--az);border-top:1px solid rgba(255,255,255,.07);padding:6
   <div class="wpp-pulse"></div>💬
 </a>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
-gsap.registerPlugin(ScrollTrigger);
-
 /* NAV */
 const nav = document.getElementById('navbar');
-window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 60), {passive:true});
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, {passive:true});
 
-/* HERO ENTRANCE */
-const tl = gsap.timeline({defaults:{ease:'power3.out'}});
-tl
-  .to('.hero-eyebrow', {opacity:1, duration:.65, delay:.25})
-  .to('.hero-h1',      {opacity:1, y:0, duration:.85}, '-=.35')
-  .to('.hero-sub',     {opacity:1, y:0, duration:.75}, '-=.55')
-  .to('.hero-ctas',    {opacity:1, y:0, duration:.65}, '-=.5')
-  .to('.hero-stats',   {opacity:1, scale:1, duration:.7, ease:'back.out(1.4)'}, '-=.4');
-
-/* SCROLL BATCHES */
-ScrollTrigger.batch('.gs-up', {
-  start:'top 89%',
-  onEnter: b => gsap.to(b, {opacity:1, y:0, duration:.72, ease:'power2.out', stagger:.11})
-});
-ScrollTrigger.batch('.gs-left', {
-  start:'top 89%',
-  onEnter: b => gsap.to(b, {opacity:1, x:0, duration:.78, ease:'power2.out', stagger:.1})
-});
-ScrollTrigger.batch('.gs-right', {
-  start:'top 89%',
-  onEnter: b => gsap.to(b, {opacity:1, x:0, duration:.78, ease:'power2.out', stagger:.1})
-});
-ScrollTrigger.batch('.gs-scale', {
-  start:'top 89%',
-  onEnter: b => gsap.to(b, {opacity:1, scale:1, duration:.8, ease:'back.out(1.5)', stagger:.12})
-});
-ScrollTrigger.batch('.gs-fade', {
-  start:'top 89%',
-  onEnter: b => gsap.to(b, {opacity:1, duration:.6})
-});
-
-/* COMO individual stagger */
-gsap.utils.toArray('.como-step').forEach((el, i) => {
-  ScrollTrigger.create({
-    trigger:el, start:'top 90%',
-    onEnter: () => gsap.to(el, {opacity:1, y:0, duration:.65, ease:'power2.out', delay:i*.1})
+/* SCROLL ANIMATIONS via IntersectionObserver */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('anim-in');
+      io.unobserve(e.target);
+    }
   });
-});
+}, {threshold: 0.14, rootMargin:'0px 0px -40px 0px'});
+
+document.querySelectorAll('.gs-up,.gs-left,.gs-right,.gs-scale').forEach(el => io.observe(el));
+
+/* TRUCK SLIDE-IN + WHEEL SPIN */
+const truckWrap = document.getElementById('truckWrap');
+const roadLine  = document.getElementById('roadLine');
+const truckIO = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      truckWrap.classList.add('in');
+      truckWrap.classList.add('wheels-on');
+      if (roadLine) roadLine.style.cssText += 'transform:scaleX(1)';
+    } else {
+      truckWrap.classList.remove('in','wheels-on');
+      if (roadLine) roadLine.style.cssText += 'transform:scaleX(0)';
+    }
+  });
+}, {threshold: 0.15});
+if (truckWrap) truckIO.observe(truckWrap);
 
 /* PARALLAX SOBRE */
-const sobreBg = document.getElementById('sobreBg');
+const sobreBg  = document.getElementById('sobreBg');
 const sobreSec = document.getElementById('sobre');
-function doParallax() {
-  if (!sobreBg||!sobreSec) return;
+function parallax(){
+  if (!sobreBg || !sobreSec) return;
   const r = sobreSec.getBoundingClientRect();
-  if (r.bottom<-100||r.top>innerHeight+100) return;
-  const p = -r.top/(r.height+innerHeight);
-  sobreBg.style.transform = `scale(1.1) translateY(${p*70}px)`;
+  if (r.bottom < -200 || r.top > window.innerHeight + 200) return;
+  const p = -r.top / (r.height + window.innerHeight);
+  sobreBg.style.transform = `scale(1.1) translateY(${p * 70}px)`;
 }
-window.addEventListener('scroll', doParallax, {passive:true});
-doParallax();
-
-/* COUNTER */
-document.querySelectorAll('.ostat-n[data-target]').forEach(el => {
-  ScrollTrigger.create({trigger:el, start:'top 85%', onEnter:()=>{
-    const target = parseInt(el.dataset.target);
-    const suffix = el.dataset.suffix||'';
-    gsap.to({val:0},{val:target,duration:1.5,ease:'power2.out',
-      onUpdate:function(){
-        const v=Math.round(this.targets()[0].val);
-        el.textContent=target>=1000?Math.round(v/1000)+'mil'+suffix:v+suffix;
-      },
-      onComplete:()=>el.textContent=target>=1000?Math.round(target/1000)+'mil'+suffix:target+suffix
-    });
-  }});
-});
-
-/* DEP TILT */
-document.querySelectorAll('.dep-card').forEach(card=>{
-  card.addEventListener('mousemove',e=>{
-    const r=card.getBoundingClientRect();
-    const x=(e.clientX-r.left)/r.width-.5;
-    const y=(e.clientY-r.top)/r.height-.5;
-    gsap.to(card,{rotateX:-y*7,rotateY:x*7,y:-5,duration:.3,ease:'power1.out',transformPerspective:700});
-  });
-  card.addEventListener('mouseleave',()=>gsap.to(card,{rotateX:0,rotateY:0,y:0,duration:.5,ease:'elastic.out(1,.75)'}));
-});
-
-/* BUTTON HOVER */
-document.querySelectorAll('.btn-gold,.btn-ghost,.nav-wpp,.fsub').forEach(btn=>{
-  btn.addEventListener('mouseenter',()=>gsap.to(btn,{scale:1.04,duration:.2}));
-  btn.addEventListener('mouseleave',()=>gsap.to(btn,{scale:1,duration:.25}));
-});
+window.addEventListener('scroll', parallax, {passive:true});
+parallax();
 
 /* ACTIVE NAV */
-const sections=document.querySelectorAll('section[id]');
-const links=document.querySelectorAll('.nav-links a');
-window.addEventListener('scroll',()=>{
-  let cur='';
-  sections.forEach(s=>{if(scrollY>=s.offsetTop-110)cur=s.id;});
-  links.forEach(a=>a.style.color=a.getAttribute('href')==='#'+cur?'var(--or)':'');
-},{passive:true});
+const sections = document.querySelectorAll('section[id]');
+const links    = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 130) cur = s.id; });
+  links.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--or)' : '';
+  });
+}, {passive:true});
+
+/* DEP CARD TILT */
+document.querySelectorAll('.dep-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width  - .5;
+    const y = (e.clientY - r.top)  / r.height - .5;
+    card.style.transform = `translateY(-5px) perspective(700px) rotateX(${-y * 6}deg) rotateY(${x * 6}deg)`;
+  });
+  card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+});
+
+/* VIDEO: keep playing, no controls, no pause */
+const heroVid = document.getElementById('heroVideo');
+if (heroVid) {
+  heroVid.controls = false;
+  heroVid.disablePictureInPicture = true;
+  heroVid.addEventListener('contextmenu', e => e.preventDefault());
+  heroVid.addEventListener('pause', () => {
+    try { heroVid.play(); } catch(e) {}
+  });
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) { try { heroVid.play(); } catch(e) {} }
+  });
+  try { heroVid.play(); } catch(e) {}
+}
 
 /* FORM WPP */
 function enviarWpp(){
-  const n=document.getElementById('f-nome')?.value||'';
-  const t=document.getElementById('f-tel')?.value||'';
-  const v=document.getElementById('f-vei')?.value||'';
-  const m=document.getElementById('f-msg')?.value||'';
-  const txt=`Olá! Quero um orçamento!\n\n👤 Nome: ${n}\n📱 Contato: ${t}\n🚗 Veículo: ${v}\n💬 Mensagem: ${m}`;
-  window.open('https://wa.me/5546999999999?text='+encodeURIComponent(txt),'_blank');
+  const n = document.getElementById('f-nome')?.value || '';
+  const t = document.getElementById('f-tel')?.value  || '';
+  const v = document.getElementById('f-vei')?.value  || '';
+  const m = document.getElementById('f-msg')?.value  || '';
+  const txt = `Olá! Quero um orçamento!\n\n👤 Nome: ${n}\n📱 Contato: ${t}\n🚗 Veículo: ${v}\n💬 Mensagem: ${m}`;
+  window.open('https://wa.me/5546999999999?text=' + encodeURIComponent(txt), '_blank');
 }
+
+window.addEventListener('scroll', () => {
+  const section = document.getElementById('veiculo-section');
+  const truck = document.getElementById('truckWrap');
+  
+  const rect = section.getBoundingClientRect();
+  
+  // Se a seção estiver visível
+  if(rect.top < window.innerHeight && rect.bottom > 0) {
+    // Calcula o percentual de rolagem da seção
+    const scrollPercent = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+    // Move o caminhão da direita (100) para a esquerda (-20)
+    const move = 100 - (scrollPercent * 120); 
+    truck.style.transform = `translateX(${move}%)`;
+    truck.style.opacity = "1";
+  }
+});
+
 </script>
 </body>
 </html>
